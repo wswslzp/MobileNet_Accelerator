@@ -1,3 +1,3 @@
-#CNN Accelerator
+# CNN Accelerator
 
 Code remote storage
