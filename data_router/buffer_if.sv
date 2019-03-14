@@ -1,6 +1,7 @@
 module buffer_if#(
 	parameter KSIZE = 3,
-	parameter POY = 3
+	parameter POY = 3,
+	parameter STRIDE = 1,
 )(
 	input 					clk,
 	input 					rst_n,
@@ -14,7 +15,7 @@ module buffer_if#(
 
 	// glb_ctrl
 	input 					dw_comp,
-	input [1:0] 		stride,
+	//input [1:0] 		stride,
 
 	// reg_array control
 	// reg_array_cmd = 2'b00, take pixel from buffer if
@@ -42,8 +43,8 @@ localparam IDLE = 3'h0, INITTRAN_1 = 3'h1, INITTRAN_2 = 3'h2
 					 SHIFT = 3'h3, NTRAN = 3'h4;
 
 wire shift_cnt_f = (shift_cnt == (KSIZE - 2));
-wire init_trans_cnt_f = (init_trans_cnt == stride - 1);
-wire ntrans_cnt_f = (ntrans_cnt == (POY - stride - 1));
+wire init_trans_cnt_f = (init_trans_cnt == STRIDE - 1);
+wire ntrans_cnt_f = (ntrans_cnt == (POY - STRIDE - 1));
 wire bank_r_f = (bank_r == POY-1);
 
 assign bank = bank_r;
