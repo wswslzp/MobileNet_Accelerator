@@ -14,7 +14,9 @@ module buffer_if#(
 	output[27:0]  	col,
 
 	// glb_ctrl
-	input 					dw_comp,
+	// we didn't implement the pw function
+	// so this signal is temporally needless
+	input 					dw_comp, 
 	//input [1:0] 		stride,
 
 	// reg_array control
@@ -40,7 +42,7 @@ reg fifo_read_r;
 reg [2:0] state, nstate;
 
 localparam IDLE = 3'h0, INITTRAN_1 = 3'h1, INITTRAN_2 = 3'h2
-					 SHIFT = 3'h3, NTRAN = 3'h4;
+					 SHIFT = 3'h3, NTRAN_1 = 3'h4, NTRAN_2 = 3'h5;
 
 wire shift_cnt_f = (shift_cnt == (KSIZE - 2));
 wire init_trans_cnt_f = (init_trans_cnt == STRIDE - 1);
@@ -70,9 +72,10 @@ always@* begin
 		INITTRAN_2: nstate = SHIFT;
 		SHIFT: nstate = shift_cnt_f	? SHIFT :
 										init_trans_cnt_f? INITTRAN_1 :
-										ntrans_cnt_f? NTRAN :
+										ntrans_cnt_f? NTRAN_1 :
 																  IDLE;
-		NTRAN: nstate = SHIFT;
+		NTRAN_1: nstate = NTRAN_2;
+		NTRAN_2: nstate = SHIFT;
 	endcase
 end
 
@@ -105,13 +108,17 @@ task shift;
 	reg_array_cmd_r <= 2'b01;
 endtask 
 
-task norm_trans;
-	reg_array_cmd_r <= 2'b10;
+task norm_trans_read;
 	rpsel_r <= 2'b01;
 	bank_r <= bank_r_f ? 2'h0 : bank_r + 2'h1;
 	row_r <= bank_r_f_r + 2'h1;
 	ntrans_cnt <= ntrans_cnt + 1;
 endtask
+
+task norm_trans_reci;
+	reg_array_cmd <= 2'b10;
+endtask
+
 
 always@(posedge clk) begin
 	case(state)
@@ -119,7 +126,8 @@ always@(posedge clk) begin
 		INITTRAN_1: init_trans_read;
 		INITTRAN_2: init_trans_reci;
 		SHIFT: shift;
-		NTRAN: norm_trans;
+		NTRAN_1: norm_trans_read;
+		NTRAN_2: norm_trans_reci;
 	endcase
 end
 

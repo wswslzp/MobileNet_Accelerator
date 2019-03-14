@@ -3,7 +3,8 @@ module reg_array#(
 	parameter BUFW = 32,
 	parameter KSIZE = 3,
 	parameter POX = 16,
-	parameter STRIDE = 1
+	parameter STRIDE = 1,
+	parameter LASTONE = 0
 )(
 	input 					clk,
 	input 					rst_n,
@@ -45,7 +46,10 @@ always@(posedge clk) begin
 		SHIFT: 
 			for(int i = 0; i < (BUFW-KSIZE+1); i++) 
 				mem[i] <= mem[i+1];
-		FIFOI: mem <= i_fifo_data;
+		FIFOI: //mem <= i_fifo_data; 
+			// NO PROBLEM?
+			if (LASTONE == 0) mem <= i_fifo_data;
+			else (LASTONE == 1) mem <= i_buf_data;
 	endcase
 end
 
