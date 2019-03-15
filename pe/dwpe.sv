@@ -1,6 +1,7 @@
 module dwpe #(
 	parameter DW = 32,
-	parameter POX = 16
+	parameter POX = 16,
+	parameter KSIZE = 3
 )(
 	input 					clk,
 	input 					rst_n,
@@ -15,10 +16,10 @@ module dwpe #(
 
 wire [DW-1:0] mac_result[POX];
 
-mac_bank mac_bank_u#(.DW,
-										 .POX,
-										 .NMAX(9)
-									 )(
+mac_bank#(.DW(DW),
+				 .POX(POX),
+				 .NMAX(KSIZE**2)
+				 ) u_mac_bank (
 										 .clk,
 										 .rst_n,
 										 .ena(dwpe_ena),
@@ -27,10 +28,9 @@ mac_bank mac_bank_u#(.DW,
 										 .result(mac_result),
 										 .cnt_c(result_valid)
 									 );
-relu relu_u#(.DW,
-						 .POX,
-						 .NMAX(9)
-					 )(
+relu#(.DW(DW),
+		 .POX(POX)
+		 ) u_relu (
 						 .data(mac_result),
 						 .result
 					 );

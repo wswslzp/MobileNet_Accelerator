@@ -16,9 +16,7 @@ module mac_bank#(
 genvar i;
 generate 
 	for (i = 0; i < POX; i++) begin : macs
-		mac u_mac#(.DW(DW),
-							 .NMAX(NMAX)
-						 )(
+		mac#(.DW(DW),.NMAX(NMAX)) u_mac(
 							 .clk,
 							 .rst_n,
 							 .ena,

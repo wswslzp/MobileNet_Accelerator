@@ -13,14 +13,14 @@ module dwpe_array#(
 	input 				 pe_ena
 );
 
-wire [DW-1:0] 
+//wire [DW-1:0] 
 
 genvar i, j;
 generate 
 	for (i = 0; i < POY; i++) begin:pe_col
-		dwpe u_dwpe#(.DW,
-								 .POX
-							 )(.clk,
+		dwpe#(.DW(DW),
+				 .POX(POX)
+				 ) u_dwpe (.clk,
 								 .rst_n,
 								 .pe_ena,
 								 .pixel_array(pixel_array[i]),
