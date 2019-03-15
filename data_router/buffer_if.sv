@@ -25,7 +25,8 @@ module buffer_if#(
 	// reg_array_cmd = 2'b10, take pixel from fifo to reg array except last one,
 	// 												and last one takes pixel from buffer
 	output[1:0]			reg_array_cmd,
-	output 					fifo_read
+	output 					fifo_read,
+	output 					dwpe_ena// to dwpe
 );
 
 reg [3:0] shift_cnt; //shift maxium smaller than 9
@@ -38,6 +39,7 @@ reg [27:0] col_r;
 reg [1:0] reg_array_cmd_r;
 reg bank_r_f_r;
 reg fifo_read_r;
+reg dwpe_ena_r;
 
 reg [2:0] state, nstate;
 
@@ -54,6 +56,7 @@ assign rpsel = rpsel_r;
 assign row = row_r;
 assign col = col_r;
 assign reg_array_cmd = reg_array_cmd_r;
+assign dwpe_ena = dwpe_ena_r;
 
 always@(posedge clk) begin
 	if (~rst_n) bank_r_f_r <= 0;
@@ -100,6 +103,7 @@ endtask
 task init_trans_reci;
 	reg_array_cmd_r <= 2'b00;
 	fifo_read_r <= 1;
+	dwpe_ena_r <= 1'b1;
 endtask 
 
 task shift;

@@ -4,7 +4,7 @@ module dwpe #(
 )(
 	input 					clk,
 	input 					rst_n,
-	input 					pe_ena,
+	input 					dwpe_ena,
 
 	input [DW-1:0] 	pixel_array[POX-1:0],
 
@@ -21,7 +21,7 @@ mac_bank mac_bank_u#(.DW,
 									 )(
 										 .clk,
 										 .rst_n,
-										 .ena(pe_ena),
+										 .ena(dwpe_ena),
 										 .data(pixel_array),
 										 .weight(weight),
 										 .result(mac_result),

@@ -14,11 +14,13 @@ reg [DW-1:0] mem[BUFW];
 assign o_data = mem[0:BUFW-1];
 
 always@(posedge clk) begin
-	if (fifo_read) begin
-		for(int i = 0; i < BUFW; i++) begin
+	//if (fifo_read) begin
+	for(int i = 0; i < BUFW; i++) begin
+		if (fifo_read) 
 			mem[i] <= i_data[i];
-		end
+		else ;
 	end
+//	end
 end
 
 

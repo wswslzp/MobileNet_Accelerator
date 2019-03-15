@@ -22,13 +22,15 @@ module data_router#(
 	output[28:0]		col,
 
 	output[DW-1:0]	dwpixel_array[POY][POX],
-	output 					dw_ena,
+	output 					dwpe_ena,
 	// this group of signals are temporally needless
 	output[DW-1:0]	pwpixel_array[POY]
 );
 
 wire [1:0] reg_array_cmd;
 wire 			 fifo_read;
+wire [DW-1:0] reg_array_dat[POY];
+wire [DW-1:0] fifo_i_data[POY-1], fifo_o_data[POY-1];
 
 buffer_if u_buffer_if#(.KSIZE, 
 					 .POY,
@@ -43,10 +45,104 @@ buffer_if u_buffer_if#(.KSIZE,
 					 .col,
 					 .dw_comp,
 					 .reg_array_cmd,
+					 .dwpe_ena,
 					 .fifo_read
 				 );
 
-				 //TODO: link the submodule
+mux u_mux#(
+	.DW,
+	.POY,
+	.BUFW)(
+	.idata(data),
+	.bank(bank),
+	.odata(reg_array_dat[POY-1])
+);
+
+genvar i;
+generate 
+
+for(i = 0;i < POY;i++) begin:reg_arrays
+	//reg_array u_reg_array#(
+	//	.DW, 
+	//	.BUFW,
+	//	.KSIZE,
+	//	.POX,
+	//	.STRIDE,
+	//	.LASTONE(0))(
+	//	.
+	//if (i != POY-1) begin
+	//	assign reg_array_dat[i] = data[i];
+	//	
+	//end 
+	//if (i != 0) begin
+	//	assign fifo_i_data[i] = reg_array_dat[i];
+	//end
+	if (i != 0 && i != POY-1) begin
+		assign reg_array_dat[i] = data[i];
+		assign fifo_i_data[i-1] = reg_array_dat[i];
+		reg_array u_reg_array#(// reg_array i
+			.DW,
+			.BUFW,
+			.KSIZE,
+			.POX,
+			.STRIDE,
+			.LASTONE(0))(
+			.clk,
+			.rst_n,
+			.i_buf_data(reg_array_dat[i]),
+			.i_fifo_data(fifo_o_data[i]),
+			.o_pe_data(dwpixel_array[i]),
+			.reg_array_cmd);
+		syn_fifo u_syn_fifo#(// syn_fifo i
+			.DW,
+			.BUFW)(
+			.clk,
+			.fifo_read,
+			.i_data(fifo_i_data[i]),
+			.o_data(fifo_o_data[i]));
+	end 
+	else if (i == 0) begin
+		assign reg_array_dat[0] = data[0];
+		reg_array u_reg_array#(
+			.DW,
+			.BUFW,
+			.KSIZE,
+			.POX,
+			.STRIDE,
+			.LASTONE(0))(
+			.clk,
+			.rst_n,
+			.i_buf_data(reg_array_dat[0]),
+			.i_fifo_data(fifo_o_data[0]),
+			.o_pe_data(dwpixel_array[0]),
+			.reg_array_cmd);
+		syn_fifo u_syn_fifo#(// syn_fifo i
+			.DW,
+			.BUFW)(
+			.clk,
+			.fifo_read,
+			.i_data(fifo_i_data[0]),
+			.o_data(fifo_o_data[0]));
+	end else begin
+		//assign reg_array_dat[POY-1] = mux.odata;
+		assign fifo_i_data[POY-2] = reg_array_dat[POY-1];
+		reg_array u_reg_array#(
+			.DW,
+			.BUFW,
+			.KSIZE,
+			.POX,
+			.STRIDE,
+			.LASTONE(1))(
+			.clk,
+			.rst_n,
+			.i_buf_data(reg_array_dat[POY-1]),
+			.i_fifo_data(),
+			.o_pe_data(dwpixel_array[POY-1]),
+			.reg_array_cmd);
+	end
+			
+	
+
 
 endmodule
 
