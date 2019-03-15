@@ -24,18 +24,29 @@ localparam BUFIN = 2'b00,
 reg [DW-1:0] mem[BUFW];
 
 //TODO: handle with STRIDE, parameterize the stride signal?yes
+genvar i;
 generate 
 if (STRIDE == 1) begin//BUFW=POX
-	always@* begin
-		for(int i = 0; i < POX; i++) begin
-			o_pe_data[i] = mem[i];
-		end
+	//always@* begin
+	//	for(int i = 0; i < POX; i++) begin
+	//		o_pe_data[i] = mem[i];
+	//	end
+	//end
+	for(i = 0; i < POX; i++) begin
+		assign o_pe_data[i] = mem[i];
 	end
 end else if (STRIDE == 2) begin
-	always@* begin
-		for(int i = 0; i < POX; i++) begin
-			o_pe_data[i] = mem[2*i];
-		end
+	//always@* begin
+	//	for(int i = 0; i < POX; i++) begin
+	//		o_pe_data[i] = mem[2*i];
+	//	end
+	//end
+	for(i = 0; i < POX; i++) begin
+		assign o_pe_data[i] = mem[i*2];
+	end
+end else begin
+	for(i = 0; i < POX; i++) begin
+		assign o_pe_data[i] = 'x;
 	end
 end
 endgenerate
@@ -46,10 +57,11 @@ always@(posedge clk) begin
 		SHIFT: 
 			for(int i = 0; i < (BUFW-KSIZE+1); i++) 
 				mem[i] <= mem[i+1];
-		FIFOI: //mem <= i_fifo_data; 
+		FIFOI:begin //mem <= i_fifo_data; 
 			// NO PROBLEM?
 			if (LASTONE == 0) mem <= i_fifo_data;
-			else (LASTONE == 1) mem <= i_buf_data;
+			else mem <= i_buf_data;
+		end
 	endcase
 end
 

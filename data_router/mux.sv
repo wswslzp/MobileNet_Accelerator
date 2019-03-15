@@ -8,13 +8,15 @@ module mux#(
 	// which means that bank's quantity cannot 
 	// be configured more than 4.
 	input [1:0]			bank, 
-	output[DW-1:0]	odata[BUFW]
+	output reg [DW-1:0]	odata[BUFW]
 );
 
 always@* begin
 	for(int i = 0; i < POY; i++) begin
 		if (bank == i) odata = idata[i];
-		else odata = {DW{1'bx}};
+		else 
+			for(int j = 0; j < BUFW; j++) 
+				odata[j] = 'x;
 	end
 end
 
