@@ -40,6 +40,7 @@ reg [1:0] reg_array_cmd_r[POY];
 reg bank_r_f_r;
 //reg fifo_read_r;
 reg dwpe_ena_r;
+reg dwpe_ena_r_1;
 reg ssd_r_1, ssd_r_2;
 
 reg [2:0] state, nstate;
@@ -64,8 +65,14 @@ assign rpsel = rpsel_r;
 assign row = row_r;
 assign col = col_r;
 assign reg_array_cmd = reg_array_cmd_r;
-assign dwpe_ena = dwpe_ena_r;
+assign dwpe_ena = dwpe_ena_r_1 | dwpe_ena_r;
 assign fifo_read = ssd_r_2 & (~ssd_r_1);
+
+//Trick to extend dwpe_ena to one more
+//cycle than dwpe_ena_r
+always @(posedge clk) begin
+	dwpe_ena_r_1 <= dwpe_ena_r;
+end
 
 always @(posedge clk) begin
 	if (~rst_n) {ssd_r_1, ssd_r_2} <= 2'b00;
