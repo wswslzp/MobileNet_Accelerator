@@ -6,7 +6,7 @@ parameter DW = 32,
 	POX = 16,
 	BUFW = 48,
 	KSIZE = 3,
-	STRIDE = 1;
+	STRIDE = 2;
 
 logic clk, rst_n, blkend, dwpe_ena;
 logic [1:0] bank, row, rpsel;
@@ -14,6 +14,10 @@ logic [27:0] col;
 logic [DW-1:0] data[POY][BUFW], 
 	dwpixel_array[POY][POX],
 	pwpixel_array[POY];
+
+event dwpe_done;
+
+always @(negedge dwpe_ena) ->dwpe_done;
 
 always #50 clk = ~clk;
 
@@ -23,7 +27,7 @@ initial begin
 	repeat(5) @(posedge clk);
 	rst_n = 1;
 
-	repeat(100) @(posedge clk);
+	repeat(1000) @(posedge clk);
 	$stop;
 end
 

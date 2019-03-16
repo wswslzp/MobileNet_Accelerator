@@ -40,7 +40,22 @@ initial begin
 	repeat(10) @(posedge clk);
 	blkend = 1;
 	@(posedge clk);
+
 	blkend = 0;
+	repeat(100) @(posedge clk);
+	for(int i = 0; i < POY; i++) begin
+		for(int j = 0; j < BUFH; j++) begin
+			for(int k = 0; k < BUFW; k++) begin
+				indata[i][j][k] = 50*i+2*j+k;
+			end
+		end
+	end
+	repeat(10) @(posedge clk);
+	blkend = 1;
+	@(posedge clk);
+
+	blkend = 0;
+
 end
 
 task rr;
