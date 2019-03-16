@@ -63,21 +63,7 @@ genvar i;
 generate 
 
 for(i = 0;i < POY;i++) begin:reg_arrays
-	//reg_array u_reg_array#(
-	//	.DW, 
-	//	.BUFW,
-	//	.KSIZE,
-	//	.POX,
-	//	.STRIDE,
-	//	.LASTONE(0))(
-	//	.
-	//if (i != POY-1) begin
-	//	assign reg_array_dat[i] = data[i];
-	//	
-	//end 
-	//if (i != 0) begin
-	//	assign fifo_i_data[i] = reg_array_dat[i];
-	//end
+
 	if (i != 0 && i != POY-1) begin
 		assign reg_array_dat[i] = data[i];
 		assign fifo_i_data[i-1] = reg_array_o_fifo_dat[i-1];
@@ -129,7 +115,6 @@ for(i = 0;i < POY;i++) begin:reg_arrays
 			.i_data(fifo_i_data[0]),
 			.o_data(fifo_o_data[0]));
 	end else begin
-		//assign reg_array_dat[POY-1] = mux.odata;
 		assign fifo_i_data[POY-2] = reg_array_o_fifo_dat[POY-2];
 		reg_array #(
 			.DW(DW),
