@@ -52,8 +52,7 @@ localparam IDLE = 3'h0, INITTRAN_1 = 3'h1, INITTRAN_2 = 3'h2,
 					 SHIFT = 3'h3, NTRAN_1 = 3'h4, NTRAN_2 = 3'h5;
 
 wire shift_cnt_f = (shift_cnt == (KSIZE - 2));
-wire init_trans_cnt_f = (init_trans_cnt == STRIDE - 1);
-//wire ntrans_cnt_f = (ntrans_cnt == (POY - STRIDE - 1));
+wire init_trans_cnt_f = (init_trans_cnt == STRIDE);
 wire ntrans_cnt_f = (ntrans_cnt == (POY - STRIDE)); 
 wire bank_r_f = (bank_r == POY-1);
 wire shift_state_detect = (state == SHIFT);
@@ -66,7 +65,6 @@ assign row = row_r;
 assign col = col_r;
 assign reg_array_cmd = reg_array_cmd_r;
 assign dwpe_ena = dwpe_ena_r;
-//assign fifo_read = fifo_read_r;
 assign fifo_read = ssd_r_2 & (~ssd_r_1);
 
 always @(posedge clk) begin
@@ -90,8 +88,8 @@ always@* begin
 		INITTRAN_1: nstate = INITTRAN_2;
 		INITTRAN_2: nstate = SHIFT;
 		SHIFT: nstate = ~shift_cnt_f	? SHIFT :
-										~init_trans_cnt_f? INITTRAN_1 :
-										~ntrans_cnt_f? NTRAN_1 :
+										~init_trans_cnt_f ? INITTRAN_2 :
+										~ntrans_cnt_f ? NTRAN_1 :
 																  IDLE;
 		NTRAN_1: nstate = SHIFT;
 		//NTRAN_1: nstate = NTRAN_2;
@@ -108,49 +106,41 @@ task idle;
 	rpsel_r <= NE;
 	row_r <= 0;
 	col_r <= 0;
-	//reg_array_cmd_r <= NE;
 	foreach(reg_array_cmd_r[i]) 
 		reg_array_cmd_r[i] <= NE;
-	//fifo_read_r <= 0;
 endtask 
 
 task init_trans_read; // 3 cycles to response
 	rpsel_r <= RR;
-	row_r <= 2'b00;
+	row_r <= init_trans_cnt;
 	init_trans_cnt <= ~init_trans_cnt_f ? init_trans_cnt + 2'h1 : '0;
 endtask
 
 task init_trans_reci;
 	foreach(reg_array_cmd_r[i]) reg_array_cmd_r[i] <= IB;
-	//reg_array_cmd_r <= IB;
-	//fifo_read_r <= 1;
 	dwpe_ena_r <= 1'b1;
 endtask 
 
 task shift;
-	//fifo_read_r <= 0;
-	if (shift_cnt_f == 1'b1) begin
+	if (shift_cnt_f == 1'b1 && init_trans_cnt_f == 1'b1) begin
 		rpsel_r <= BR;
 		bank_r <= bank_r_f ? 2'h0 : bank_r + 2'h1;
 		row_r <= bank_r_f ? row_r + 1 : row_r;
-	end
+	end else if (shift_cnt_f == 1'b1 && init_trans_cnt_f != 1'b1) begin
+		rpsel_r <= RR;
+		row_r <= init_trans_cnt;
+		init_trans_cnt <= ~init_trans_cnt_f ? init_trans_cnt + 2'h1 : '0;
+	end else;
 	shift_cnt <= ~shift_cnt_f ? shift_cnt + 4'h1 : '0;
-	//reg_array_cmd_r <= SF;
 	foreach(reg_array_cmd_r[i]) reg_array_cmd_r[i] <= SF;
 endtask 
 
 task norm_trans_read;
-	//if (shift_cnt_f == 1'b1) begin
-	//	rpsel_r <= BR;
-	//	bank_r <= bank_r_f ? 2'h0 : bank_r + 2'h1;
-	//	row_r <= bank_r_f ? row_r + 1 : row_r;
-	//end
 	ntrans_cnt <= ~ntrans_cnt_f ? ntrans_cnt + 1 : '0;
 	foreach(reg_array_cmd_r[i]) begin
 		if(i == POY-1) reg_array_cmd_r[i] <= IB;
 		else reg_array_cmd_r[i] <= IF;
 	end
-	//fifo_read_r <= 1'b1;
 endtask
 
 task norm_trans_reci;

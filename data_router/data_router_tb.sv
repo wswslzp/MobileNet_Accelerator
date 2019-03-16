@@ -6,7 +6,7 @@ parameter DW = 32,
 	POX = 16,
 	BUFW = 32,
 	KSIZE = 3,
-	STRIDE = 1;
+	STRIDE = 2;
 
 logic clk, rst_n, blkend, dwpe_ena;
 logic [1:0] bank, row, rpsel;
@@ -27,8 +27,6 @@ initial begin
 	$stop;
 end
 
-//TODO: dwpixel_array[2] is 'x, check it!!!
-//TODO: FSM seems to be right but dwpixel all wrong!!
 data_router#(
 	.DW(DW),
 	.POX(POX),
