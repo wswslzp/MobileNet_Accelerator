@@ -14,9 +14,9 @@ module mux#(
 always@* begin
 	for(int i = 0; i < POY; i++) begin
 		if (bank == i) odata = idata[i];
-		else 
-			for(int j = 0; j < BUFW; j++) 
-				odata[j] = 'x;
+		//else 
+		//	for(int j = 0; j < BUFW; j++) 
+		//		odata[j] = 'x;
 	end
 end
 

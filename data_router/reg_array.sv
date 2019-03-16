@@ -12,16 +12,21 @@ module reg_array#(
 	input [DW-1:0] 	i_buf_data[BUFW],
 	input [DW-1:0] 	i_fifo_data[BUFW],
 	output[DW-1:0] 	o_pe_data[POX],
+	output[DW-1:0] 	o_fifo_data[BUFW],
 
 	//input [1:0]			stride,
 	input [1:0] 		reg_array_cmd
 );
 
-localparam BUFIN = 2'b00,
-					 SHIFT = 2'b01,
-					 FIFOI = 2'b10;
+// IB: buffer in; SF: shift; IF: fifo in
+localparam IB = 2'b00,
+					 SF = 2'b01,
+					 IF = 2'b10,
+					 NE = 2'b11;
 
 reg [DW-1:0] mem[BUFW];
+
+assign o_fifo_data = mem;
 
 //TODO: handle with STRIDE, parameterize the stride signal?yes
 genvar i;
@@ -53,15 +58,16 @@ endgenerate
 
 always@(posedge clk) begin
 	case(reg_array_cmd) 
-		BUFIN: mem <= i_buf_data;
-		SHIFT: 
+		IB: mem <= i_buf_data;
+		SF: 
 			for(int i = 0; i < (BUFW-KSIZE+1); i++) 
 				mem[i] <= mem[i+1];
-		FIFOI:begin //mem <= i_fifo_data; 
+		IF:begin //mem <= i_fifo_data; 
 			// NO PROBLEM?
 			if (LASTONE == 0) mem <= i_fifo_data;
 			else mem <= i_buf_data;
 		end
+		NE: $display("IDLE");
 	endcase
 end
 

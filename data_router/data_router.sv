@@ -27,10 +27,11 @@ module data_router#(
 	output[DW-1:0]	pwpixel_array[POY]
 );
 
-wire [1:0] reg_array_cmd;
+wire [1:0] reg_array_cmd[POY];
 wire 			 fifo_read;
 wire [DW-1:0] reg_array_dat[POY][BUFW];
 wire [DW-1:0] fifo_i_data[POY-1][BUFW], fifo_o_data[POY-1][BUFW];
+wire [DW-1:0] reg_array_o_fifo_dat[POY-1][BUFW];
 
 buffer_if #(.KSIZE(KSIZE), 
 					 .POY(POY),
@@ -79,7 +80,7 @@ for(i = 0;i < POY;i++) begin:reg_arrays
 	//end
 	if (i != 0 && i != POY-1) begin
 		assign reg_array_dat[i] = data[i];
-		assign fifo_i_data[i-1] = reg_array_dat[i];
+		assign fifo_i_data[i-1] = reg_array_o_fifo_dat[i-1];
 		reg_array #(// reg_array i
 			.DW(DW),
 			.BUFW(BUFW),
@@ -92,7 +93,8 @@ for(i = 0;i < POY;i++) begin:reg_arrays
 			.i_buf_data(reg_array_dat[i]),
 			.i_fifo_data(fifo_o_data[i]),
 			.o_pe_data(dwpixel_array[i]),
-			.reg_array_cmd);
+			.o_fifo_data(reg_array_o_fifo_dat[i-1]),
+			.reg_array_cmd(reg_array_cmd[i]));
 		syn_fifo #(// syn_fifo i
 			.DW(DW),
 			.BUFW(BUFW))u_syn_fifo(
@@ -114,8 +116,9 @@ for(i = 0;i < POY;i++) begin:reg_arrays
 			.rst_n,
 			.i_buf_data(reg_array_dat[0]),
 			.i_fifo_data(fifo_o_data[0]),
+			.o_fifo_data(),
 			.o_pe_data(dwpixel_array[0]),
-			.reg_array_cmd);
+			.reg_array_cmd(reg_array_cmd[0]));
 		syn_fifo #(// syn_fifo i
 			.DW(DW),
 			.BUFW(BUFW))u_syn_fifo(
@@ -125,7 +128,7 @@ for(i = 0;i < POY;i++) begin:reg_arrays
 			.o_data(fifo_o_data[0]));
 	end else begin
 		//assign reg_array_dat[POY-1] = mux.odata;
-		assign fifo_i_data[POY-2] = reg_array_dat[POY-1];
+		assign fifo_i_data[POY-2] = reg_array_o_fifo_dat[POY-2];
 		reg_array #(
 			.DW(DW),
 			.BUFW(BUFW),
@@ -137,8 +140,9 @@ for(i = 0;i < POY;i++) begin:reg_arrays
 			.rst_n,
 			.i_buf_data(reg_array_dat[POY-1]),
 			.i_fifo_data(),
+			.o_fifo_data(reg_array_o_fifo_dat[POY-2]),
 			.o_pe_data(dwpixel_array[POY-1]),
-			.reg_array_cmd);
+			.reg_array_cmd(reg_array_cmd[POY-1]));
 	end
 end
 endgenerate

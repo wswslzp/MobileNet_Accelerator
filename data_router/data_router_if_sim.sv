@@ -33,7 +33,7 @@ initial begin
 	for(int i = 0; i < POY; i++) begin
 		for(int j = 0; j < BUFH; j++) begin
 			for(int k = 0; k < BUFW; k++) begin
-				indata[i][j][k] = $random%4'h9;
+				indata[i][j][k] = 100*i+j+k;
 			end
 		end
 	end
