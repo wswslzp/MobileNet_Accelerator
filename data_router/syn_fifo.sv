@@ -14,21 +14,6 @@ reg [DW-1:0] mem[STRIDE][BUFW];
 
 assign o_data = mem[0][0:BUFW-1];
 
-//always@(posedge clk) begin
-//	//if (fifo_read) begin
-////	for(int i = 0; i < BUFW; i++) begin
-////		if (fifo_read) 
-////			mem[i] <= i_data[i];
-////		else ;
-////	end
-////	end
-//
-//	for(int i = 0; i < STRIDE; i++) begin
-//		for(int j = 0; j < BUFW; j++) begin
-//			if (i == STRIDE-1) begin
-//				if
-//end
-//
 genvar i, j;
 generate 
 

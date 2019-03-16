@@ -57,8 +57,6 @@ wire init_trans_cnt_f = (init_trans_cnt == STRIDE);
 wire ntrans_cnt_f = (ntrans_cnt == (POY - STRIDE)); 
 wire bank_r_f = (bank_r == POY-1);
 wire shift_state_detect = (state == SHIFT);
-//wire shift_nstate_detect = (nstate == SHIFT);
-//wire shift_end_flag = ~shift_nstate_detect & shift_state_detect;
 
 assign bank = bank_r;
 assign rpsel = rpsel_r;
@@ -150,11 +148,6 @@ task norm_trans_read;
 	end
 endtask
 
-task norm_trans_reci;
-//	reg_array_cmd_r <= IF;
-endtask
-
-
 always@(posedge clk) begin
 	case(state)
 		IDLE: idle;
@@ -162,7 +155,6 @@ always@(posedge clk) begin
 		INITTRAN_2: init_trans_reci;
 		SHIFT: shift;
 		NTRAN_1: norm_trans_read;
-		NTRAN_2: norm_trans_reci;
 		default: idle;
 	endcase
 end

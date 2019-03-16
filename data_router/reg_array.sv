@@ -14,7 +14,6 @@ module reg_array#(
 	output[DW-1:0] 	o_pe_data[POX],
 	output[DW-1:0] 	o_fifo_data[BUFW],
 
-	//input [1:0]			stride,
 	input [1:0] 		reg_array_cmd
 );
 
@@ -32,20 +31,10 @@ assign o_fifo_data = mem;
 genvar i;
 generate 
 if (STRIDE == 1) begin//BUFW=POX
-	//always@* begin
-	//	for(int i = 0; i < POX; i++) begin
-	//		o_pe_data[i] = mem[i];
-	//	end
-	//end
 	for(i = 0; i < POX; i++) begin
 		assign o_pe_data[i] = mem[i];
 	end
 end else if (STRIDE == 2) begin
-	//always@* begin
-	//	for(int i = 0; i < POX; i++) begin
-	//		o_pe_data[i] = mem[2*i];
-	//	end
-	//end
 	for(i = 0; i < POX; i++) begin
 		assign o_pe_data[i] = mem[i*2];
 	end
