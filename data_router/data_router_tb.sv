@@ -4,9 +4,9 @@ module data_router_tb;
 parameter DW = 32,
 	POY = 3,
 	POX = 16,
-	BUFW = 32,
+	BUFW = 48,
 	KSIZE = 3,
-	STRIDE = 2;
+	STRIDE = 1;
 
 logic clk, rst_n, blkend, dwpe_ena;
 logic [1:0] bank, row, rpsel;

@@ -92,13 +92,12 @@ always@* begin
 										~ntrans_cnt_f ? NTRAN_1 :
 																  IDLE;
 		NTRAN_1: nstate = SHIFT;
-		//NTRAN_1: nstate = NTRAN_2;
-		//NTRAN_2: nstate = SHIFT;
 		default: nstate = IDLE;
 	endcase
 end
 
 task idle;
+	dwpe_ena_r <= 0;
 	shift_cnt <= 0;
 	init_trans_cnt <= 0;
 	ntrans_cnt <= 0;
@@ -118,7 +117,7 @@ endtask
 
 task init_trans_reci;
 	foreach(reg_array_cmd_r[i]) reg_array_cmd_r[i] <= IB;
-	dwpe_ena_r <= 1'b1;
+	//dwpe_ena_r <= 1'b1;
 endtask 
 
 task shift;
@@ -131,6 +130,7 @@ task shift;
 		row_r <= init_trans_cnt;
 		init_trans_cnt <= ~init_trans_cnt_f ? init_trans_cnt + 2'h1 : '0;
 	end else;
+	dwpe_ena_r <= 1'b1;
 	shift_cnt <= ~shift_cnt_f ? shift_cnt + 4'h1 : '0;
 	foreach(reg_array_cmd_r[i]) reg_array_cmd_r[i] <= SF;
 endtask 

@@ -97,7 +97,8 @@ for(i = 0;i < POY;i++) begin:reg_arrays
 			.reg_array_cmd(reg_array_cmd[i]));
 		syn_fifo #(// syn_fifo i
 			.DW(DW),
-			.BUFW(BUFW))u_syn_fifo(
+			.BUFW(BUFW),
+			.STRIDE(STRIDE))u_syn_fifo(
 			.clk,
 			.fifo_read,
 			.i_data(fifo_i_data[i]),
@@ -121,7 +122,8 @@ for(i = 0;i < POY;i++) begin:reg_arrays
 			.reg_array_cmd(reg_array_cmd[0]));
 		syn_fifo #(// syn_fifo i
 			.DW(DW),
-			.BUFW(BUFW))u_syn_fifo(
+			.BUFW(BUFW),
+			.STRIDE(STRIDE))u_syn_fifo(
 			.clk,
 			.fifo_read,
 			.i_data(fifo_i_data[0]),
