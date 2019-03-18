@@ -1,3 +1,4 @@
+// without batchnorm
 module dwpe #(
 	parameter DW = 32,
 	parameter POX = 16,
