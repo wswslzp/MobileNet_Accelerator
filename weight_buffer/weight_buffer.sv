@@ -7,6 +7,7 @@ module weight_buffer#(
 	input 					clk,
 	input 					rst_n,
 
+	input 					dw_comp,
 	input 					weight_load,
 	input [AW-1:0] 	init_addr,
 	input 					init_addr_en,
@@ -18,8 +19,8 @@ module weight_buffer#(
 	input [DW-1:0] 	rdata,
 	input 					rvalid,
 
-	input 					oready,
-	output[DW-1:0] 	oweight
+	input 					dw_ready,
+	output[DW-1:0] 	dw_out
 );
 
 cyc_fifo#(
@@ -30,8 +31,8 @@ cyc_fifo#(
 	.rst_n,
 	.i_data(rdata),
 	.i_valid(rvalid),
-	.o_ready(oready),
-	.o_data(oweight),
+	.o_ready(dw_ready),
+	.o_data(dw_out),
 	.full(),
 	.empty()
 );
