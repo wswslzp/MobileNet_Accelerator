@@ -1,7 +1,7 @@
 `timescale 1ns/1ns
 module weight_buffer_tb;
 
-parameter DW = 32, AW = 32, KSIZE = 3, BURST = 16;
+parameter DW = 32, AW = 32, KSIZE = 4, BURST = 32;
 
 logic clk, rst_n, weight_load, init_addr_en, arvalid, arready, rvalid,
 	dw_ready, dw_comp, rlast;
@@ -32,7 +32,7 @@ initial begin
 	rst_n = 0;
 	weight_load = 0;
 	init_addr_en = 0;
-	init_addr = 0;
+	init_addr = 90;
 	dw_ready = 0;
 	repeat(3) @(posedge clk);
 	rst_n = 1;
@@ -44,7 +44,7 @@ initial begin
 		if (i == 0) begin
 			weight_load = 1;
 			init_addr_en = 1;
-			init_addr = 0;
+			init_addr = 90;
 		end
 		else begin
 			weight_load = 1;
@@ -54,7 +54,7 @@ initial begin
 		@(posedge clk);
 		weight_load = 0;
 		init_addr_en = 0;
-		repeat(26) @(posedge clk);
+		repeat(260) @(posedge clk);
 	end
 	$stop;
 end

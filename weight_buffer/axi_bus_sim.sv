@@ -29,7 +29,7 @@ wire burst_cnt_f = (burst_cnt == burst_r);
 assign rlast = burst_cnt_f;
 assign arready = arready_r;
 assign rdata = rdata_r;
-assign rvalid = rvalid_r;
+assign rvalid = rvalid_r & ovld;
 
 initial begin
 	for(int i = 0; i < 1024; i++)
