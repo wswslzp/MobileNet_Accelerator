@@ -4,7 +4,7 @@ module weight_buffer_tb;
 parameter DW = 32, AW = 32, KSIZE = 3, BURST = 16;
 
 logic clk, rst_n, weight_load, init_addr_en, arvalid, arready, rvalid,
-	dw_ready, dw_comp;
+	dw_ready, dw_comp, rlast;
 logic [AW-1:0] init_addr, araddr;
 logic [DW-1:0] rdata, dw_out;
 logic [3:0] arburst;
@@ -37,9 +37,10 @@ initial begin
 	repeat(3) @(posedge clk);
 	rst_n = 1;
 	dw_ready = 1;
+	@(posedge clk);
 
 	for(int i = 0; i < 10; i++) begin
-		@(posedge clk);
+		//@(posedge clk);
 		if (i == 0) begin
 			weight_load = 1;
 			init_addr_en = 1;
@@ -50,6 +51,9 @@ initial begin
 			init_addr_en = 0;
 			init_addr = 0;
 		end
+		@(posedge clk);
+		weight_load = 0;
+		init_addr_en = 0;
 		repeat(26) @(posedge clk);
 	end
 	$stop;

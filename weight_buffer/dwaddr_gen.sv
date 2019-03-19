@@ -27,7 +27,7 @@ wire [AW-1:0] addr_nxt = addr + BURST;
 
 assign araddr =  addr ;
 assign arvalid =  arvalid_r ;
-assign arburst =  $log2(BURST) ;
+assign arburst =  $clog2(BURST) ;
 
 always@(posedge clk) begin
 	if (~rst_n) begin
@@ -42,7 +42,7 @@ always@(posedge clk) begin
 		addr <= addr_nxt;
 		arvalid_r <= 1'b1;
 	end
-	else;
+	else arvalid_r <= 0;
 end
 
 endmodule

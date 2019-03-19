@@ -18,10 +18,23 @@ module weight_buffer#(
 	input 					arready,
 	input [DW-1:0] 	rdata,
 	input 					rvalid,
+	input 					rlast,
 
 	input 					dw_ready,
 	output[DW-1:0] 	dw_out
 );
+
+reg [7:0] ivld_cnt;
+
+wire ivld_cnt_f = (ivld_cnt == KSIZE**2);
+wire ivld_mask = (ivld_cnt < KSIZE**2);
+wire i_valid = rvalid & ivld_mask;
+
+always @(posedge clk) begin
+	if (~rst_n) ivld_cnt <= 0;
+	else if (rvalid) ivld_cnt <= ivld_cnt_f ? ivld_cnt : ivld_cnt + 1;
+	else ivld_cnt <= 0;
+end
 
 cyc_fifo#(
 	.DW(DW),
@@ -30,7 +43,7 @@ cyc_fifo#(
 	.clk,
 	.rst_n,
 	.i_data(rdata),
-	.i_valid(rvalid),
+	.i_valid,
 	.o_ready(dw_ready),
 	.o_data(dw_out),
 	.full(),

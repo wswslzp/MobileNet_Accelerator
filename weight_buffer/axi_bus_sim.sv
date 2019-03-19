@@ -10,21 +10,23 @@ module axi_bus_sim#(
 	input [3:0] 		arburst,
 	output 					arready,
 	output[DW-1:0]	rdata,
+	output 					rlast,
 	output 					rvalid
 );
 
 reg [DW-1:0] mem[1024];//addr width=10
 reg [9:0] addr_r;
-reg [3:0] burst_r;
+reg [13:0] burst_r;
 reg ovld;
 reg [DW-1:0] rdata_r;
 reg rvalid_r;
-reg [3:0] burst_cnt;
+reg [13:0] burst_cnt;
 reg arready_r;
 
 wire [9:0] addr = araddr[9:0];
 wire burst_cnt_f = (burst_cnt == burst_r);
 
+assign rlast = burst_cnt_f;
 assign arready = arready_r;
 assign rdata = rdata_r;
 assign rvalid = rvalid_r;
@@ -41,7 +43,8 @@ always @(posedge clk) begin
 	end
 	else if (arvalid) begin
 		addr_r <= addr;
-		burst_r <= 2**arburst;
+		//burst_r <= 2**arburst;
+		burst_r <= 1 << arburst;
 	end
 	else;
 end
@@ -71,7 +74,7 @@ always @(posedge clk) begin
 		rvalid_r <= 1;
 		burst_cnt <= burst_cnt_f ? 0 : burst_cnt + 1;
 	end
-	else ;
+	else rvalid_r <= 0;
 end
 
 endmodule
