@@ -59,6 +59,8 @@ wire addr_nxt = init_addr_en ? init_addr
 //assign bl
 assign arburst = $clog2(BURST);
 assign araddr = addr_r;
+assign blkend = lm_cnt_c;
+assign mapend = blkr_cnt_c;
 
 //TODO: the whole logic maybe wrong??? NO, cnts signal
 //keep more than one cycles and must overlap the rlast
@@ -74,35 +76,42 @@ always@(posedge clk) begin
 	else if (N_cnt_c) lm_cnt <= lm_cnt_c ? 0 : lm_cnt + 8'b1;
 end
 
-always @(posedge clk) begin
+always@(posedge clk) begin
 	if (~rst_n) blk_cnt <= 0;
 	else if (lm_cnt_c) blk_cnt <= blk_cnt_c ? 0 : blk_cnt + 8'b1;
 end
 
-always @(posedge clk) begin
+always@(posedge clk) begin
 	if (~rst_n) blkr_cnt <= 0;
 	else if (blk_cnt_c) blkr_cnt <= blkr_cnt_c ? 0 : blkr_cnt + 8'b1;
 end
 
-always @(posedge clk) begin
+always@(posedge clk) begin
 	if (~rst_n) blk_raddr_r <= 0;
 	else if (init_addr_en) blk_raddr_r <= init_addr;
 	else if (N_cnt_c) blk_raddr_r <= addr_nxt;
 end
 
-always @(posedge clk) begin
+always@(posedge clk) begin
 	if (~rst_n) blk_paddr_r <= 0;
 	else if (init_addr_en) blk_paddr_r <= init_addr;
 	else if (lm_cnt_c) blk_paddr_r <= addr_nxt;
 end
 
-always @(posedge clk) begin
+always@(posedge clk) begin
 	if (~rst_n) addr_r <= 0;
 	else addr_r <= addr_nxt;
 end
 
 //TODO: when to pull up arvalid?
+//Either 5cycles after rlast,or right 
+//after rlast?
 //			what is data_load for?
-
+//			data_load calls for loading 
+//			a block?
+always@(posedge clk) begin
+	if (~rst_n) arvalid <= 0;
+	j
+end
 
 endmodule
