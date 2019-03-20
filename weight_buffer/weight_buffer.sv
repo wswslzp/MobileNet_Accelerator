@@ -53,6 +53,7 @@ cyc_fifo#(
 
 dwaddr_gen#(
 	.AW(AW),
+	.KSIZE(KSIZE),
 	.BURST(BURST)
 )u_dwaddr_gen(
 	.clk,

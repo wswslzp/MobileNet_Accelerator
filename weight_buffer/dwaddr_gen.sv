@@ -1,5 +1,6 @@
 module dwaddr_gen#(
 	parameter AW = 32,
+	parameter KSIZE = 3,
 	parameter BURST = 16
 )(
 	input 					clk,
@@ -23,7 +24,7 @@ reg arvalid_r;
 
 wire load_init_addr = weight_load & init_addr_en; 
 wire load_next_addr = weight_load & ~init_addr_en;
-wire [AW-1:0] addr_nxt = addr + BURST;
+wire [AW-1:0] addr_nxt = addr + KSIZE**2;
 
 assign araddr =  addr ;
 assign arvalid =  arvalid_r ;
