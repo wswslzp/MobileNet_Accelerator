@@ -44,6 +44,7 @@ cyc_fifo#(
 	.rst_n,
 	.i_data(rdata),
 	.i_valid,
+	.weight_load,
 	.o_ready(dw_ready),
 	.o_data(dw_out),
 	.full(),

@@ -10,6 +10,7 @@ module cyc_fifo#(
 	//rvalid which usually last for more than
 	//k**2 cycles.
 	input 					i_valid,
+	input 					weight_load,
 
 	input 					o_ready,
 	output[DW-1:0]	o_data,
@@ -54,6 +55,7 @@ end
 always @(posedge clk) begin
 	if (~rst_n) rptr_r <= 0;
 	else if (rptr_r_f) rptr_r <= 0;
+	else if (weight_load) rptr_r <= DEPTH-3;
 	else if (o_ready & ~empty) rptr_r <= rptr_r + 1;
 	else;
 end
