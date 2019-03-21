@@ -137,13 +137,14 @@ always@(posedge clk) begin
 	else addr_r <= addr_nxt;
 end
 
-//TODO: when to pull up arvalid?
+//TODO: DONE
+//when to pull up arvalid?
 //Either 5cycles after rlast,or right 
 //after rlast? DONE.
-//			what is data_load for?
-//			data_load calls for loading 
-//			a block?
-//			i dont know yet.
+//TODO:
+//what is data_load for?
+//data_load calls for loading a block?
+//i dont know yet.
 always@(posedge clk) begin
 	if (~rst_n) arvalid_cnt <= 0;
 	else if(rlast) arvalid_cnt <= 3'h1;
@@ -158,9 +159,10 @@ always@(posedge clk) begin
 	else if(arvalid) arvalid_state <= 2'h0;
 end
 
-//TODO: FATAL ERROR:
-//			arvalid_cnt_c does not pull up at the same 
-//			cycle with result_valid.
+//TODO: DONE
+//FATAL ERROR:
+//arvalid_cnt_c does not pull up at the same 
+//cycle with result_valid.
 always@(posedge clk) begin
 	if (~rst_n) arvalid_r <= 0;
 	else if(arvalid_r) arvalid_r <= 0;
