@@ -19,12 +19,22 @@ addr_gen #(
 )u_addr_gen(
 	.*);
 
+axi_bus_sim #(
+	.AW(AW),
+	.DW(32)
+)u_axi_bus_sim(
+	.*,
+	.rdata(),
+	.rvalid(),
+	.arready()
+);
+
 always #50 clk = ~clk;
 
 initial begin
 	clk = 0;
 	rst_n = 0;
-	rlast = 0;
+//	rlast = 0;
 	result_valid = 0;
 	repeat(3) @(posedge clk);
 	rst_n = 1;
@@ -41,14 +51,14 @@ initial begin
 	$stop;
 end
 
-always @(posedge clk) begin
-	if(arvalid) begin 
-		$display("araddr = %d", araddr); 
-		repeat(BURST) @(posedge clk);
-		rlast = 1;
-		@(posedge clk) rlast = 0;
-	end
-end
-
+//always @(posedge clk) begin
+//	if(arvalid) begin 
+//		$display("araddr = %d", araddr); 
+//		repeat(BURST) @(posedge clk);
+//		rlast = 1;
+//		@(posedge clk) rlast = 0;
+//	end
+//end
+//
 
 endmodule
