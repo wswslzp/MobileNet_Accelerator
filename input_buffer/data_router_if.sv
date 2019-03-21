@@ -1,4 +1,4 @@
-module data_router_if#(
+module data_router_if_sim#(
 	parameter DW = 32,
 	parameter POY = 3,
 	parameter POX = 16,
