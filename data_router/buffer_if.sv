@@ -9,8 +9,8 @@ module buffer_if#(
 	// input buffer
 	input 					blkend,
 	output[1:0]			rpsel,
-	output[1:0]			bank,
-	output[1:0]			row,
+	output[7:0]			bank,
+	output[7:0]			row,
 	output[27:0]  	col,
 
 	// glb_ctrl
@@ -32,9 +32,9 @@ module buffer_if#(
 reg [3:0] shift_cnt; //shift maxium smaller than 9
 reg [1:0] init_trans_cnt; //stride maxium is 2
 reg [1:0] ntrans_cnt; //poy=3,stride=1,2
-reg [1:0] bank_r;
+reg [7:0] bank_r;
 reg [1:0] rpsel_r;
-reg [1:0] row_r;
+reg [7:0] row_r;
 reg [27:0] col_r;
 reg [1:0] reg_array_cmd_r[POY];
 reg bank_r_f_r;
@@ -128,7 +128,7 @@ endtask
 task shift;
 	if (shift_cnt_f == 1'b1 && init_trans_cnt_f == 1'b1) begin
 		rpsel_r <= BR;
-		bank_r <= bank_r_f ? 2'h0 : bank_r + 2'h1;
+		bank_r <= bank_r_f ? 0 : bank_r + 1;
 		row_r <= bank_r_f ? row_r + 1 : row_r;
 	end else if (shift_cnt_f == 1'b1 && init_trans_cnt_f != 1'b1) begin
 		rpsel_r <= RR;

@@ -12,8 +12,8 @@ module data_router_if_sim#(
 
 	output [DW-1:0]		data[POY][BUFW],
 	output reg				blkend,
-	input [1:0]				bank,
-	input [1:0]				row,
+	input [7:0]				bank,
+	input [7:0]				row,
 	input [27:0]			col,
 	input [1:0]				rpsel
 );
