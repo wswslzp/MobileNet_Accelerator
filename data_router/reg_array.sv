@@ -56,7 +56,7 @@ always@(posedge clk) begin
 			if (LASTONE == 0) mem <= i_fifo_data;
 			else mem <= i_buf_data;
 		end
-		NE: $display("IDLE");
+		//NE: //$display("IDLE");
 	endcase
 end
 

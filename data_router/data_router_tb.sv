@@ -7,9 +7,11 @@ parameter DW = 32,
 	BUFW = 48,
 	KSIZE = 3,
 	STRIDE = 2;
+parameter BUFH = STRIDE+1;
 
 logic clk, rst_n, blkend, dwpe_ena;
-logic [1:0] bank, row, rpsel;
+logic [1:0] rpsel;
+logic [7:0] bank, row;
 logic [27:0] col;
 logic [DW-1:0] data[POY][BUFW], 
 	dwpixel_array[POY][POX],
@@ -57,6 +59,7 @@ data_router_if_sim#(
 	.POX(POX),
 	.POY(POY),
 	.BUFW(BUFW),
+	.BUFH(BUFH),
 	.KSIZE(KSIZE),
 	.STRIDE(STRIDE))
 	u_data_router_if_sim(

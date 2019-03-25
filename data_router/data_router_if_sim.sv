@@ -60,11 +60,13 @@ end
 
 task rr;
 	for(int i = 0; i < POY; i++) begin
+		$display("indata[%d][%d][0]=%d", i, row, indata[i][row][0]);
 		data_r[i] <= indata[i][row];
 	end
 endtask
 
 task br;
+	$display("indata[%d][%d][0]=%d", bank, row, indata[bank][row][0]);
 	data_r[bank] <= indata[bank][row];
 endtask
 
@@ -75,7 +77,7 @@ task rp;
 endtask
 
 task ne;
-	$display("WRONG INSTRUCTION");
+//	$display("WRONG INSTRUCTION");
 endtask
 
 always @(posedge clk) begin

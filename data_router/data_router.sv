@@ -17,8 +17,8 @@ module data_router#(
 	input 					blkend,
 	input [DW-1:0]  data[POY][BUFW],
 	output[1:0]			rpsel,
-	output[1:0]			bank,
-	output[1:0]			row,
+	output[7:0]			bank,
+	output[7:0]			row,
 	output[27:0]		col,
 
 	output[DW-1:0]	dwpixel_array[POY][POX],
