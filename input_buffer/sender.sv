@@ -16,7 +16,7 @@ module sender#(
 	input 					rvalid,
 	input [DW-1:0] 	rdata,
 
-	//output 					wvalid,
+	output 					wvalid,
 	output[DW-1:0] 	wdata,
 	output[7:0]			wbank,
 	output[7:0]			wrow,
@@ -42,6 +42,7 @@ reg wcol_c_1;
 reg wbank_c_1;
 reg row_bias_cnt_c_1;
 
+assign wvalid = rvalid & data_load;
 assign wdata = rdata;
 assign wbank = wbank_r;
 assign wrow = row_base_r + row_bias_cnt_r;

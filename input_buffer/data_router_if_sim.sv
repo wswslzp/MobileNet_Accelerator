@@ -17,6 +17,7 @@ module data_router_if_sim#(
 	input [27:0]			rcol,
 
 	// from sender 
+	input 						wvalid,
 	input [DW-1:0]		wdata,
 	input [7:0] 			wbank,
 	input [7:0]				wrow,
@@ -38,7 +39,7 @@ assign rdata = data_r;
 // address and data must be available
 // at the same cycle.
 always@(posedge clk) begin
-	indata[wbank][wrow][wcol] <= wdata;
+	if(wvalid) indata[wbank][wrow][wcol] <= wdata;
 end
 
 task rr;
@@ -58,7 +59,7 @@ task rp;
 endtask
 
 task ne;
-	$display("WRONG INSTRUCTION");
+
 endtask
 
 always @(posedge clk) begin
