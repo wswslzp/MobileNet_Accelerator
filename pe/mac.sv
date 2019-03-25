@@ -18,7 +18,7 @@ reg [5:0]			cnt;
 wire [2*DW-1:0] product = data * weight;
 wire [2*DW-1:0] partial_sum_nxt = partial_sum + product;
 
-assign cnt_c = (cnt == (NMAX - 1));
+assign cnt_c = (cnt == (NMAX));
 assign result = cnt_c ? partial_sum[DW-1:0] : 'b0;
 
 always@(posedge clk) begin

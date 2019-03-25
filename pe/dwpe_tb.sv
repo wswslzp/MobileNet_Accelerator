@@ -1,7 +1,7 @@
 `timescale 1ns/1ns
 module dwpe_tb;
 
-parameter POX = 6, DW = 32, KSIZE = 2;
+parameter POX = 6, DW = 32, KSIZE = 3;
 parameter NMAX = KSIZE**2;
 
 logic clk, rst_n, dwpe_ena;
@@ -49,6 +49,7 @@ initial begin
 	
 	repeat(5) @(posedge clk);
 	rst_n = 1;
+	repeat(10) @(posedge clk);
 
 	// generate data needed
 	repeat(10) begin
@@ -56,6 +57,7 @@ initial begin
 		true_result;
 		->data_generate_done;
 		@(negedge result_valid_bit);
+		repeat(50) @(posedge clk);
 	end
 	$stop;
 
@@ -69,7 +71,7 @@ end
 endgenerate
 
 always @(data_generate_done) begin
-	@(posedge clk) dwpe_ena <= 1;
+	/*@(posedge clk) */dwpe_ena <= 1;
 	@(posedge result_valid_bit) dwpe_ena <= 0;
 end
 
