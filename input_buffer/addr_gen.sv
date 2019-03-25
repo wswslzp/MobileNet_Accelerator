@@ -32,11 +32,16 @@ module addr_gen#(
 );
 
 localparam LM = ((STRIDE+1)*POY-STRIDE);
-// BUFW must be larger than BURST!
-localparam BUFW = (POX*STRIDE+KSIZE/2);
+// RAL must be aligned to BURST, which means that
+// POX shall be carefully selected so that RAL is 
+// equal to or less than BURST.
+// let bufw equal to burst to avoid bug in sender
+localparam BUFW = BURST;
+localparam RAL = ((POX-1)*STRIDE+KSIZE);
 localparam BUFH = STRIDE+1;
 localparam BLK_IN_ROW = IW / BUFW;
 localparam BLK_ROW_IN_MAP = IH / LM;
+localparam BUFW_EQ_BURST = (BUFW == BURST);
 
 reg [7:0] N_cnt;
 reg [7:0] lm_cnt;
@@ -55,7 +60,9 @@ reg lm_cnt_c_1;
 reg blk_cnt_c_1;
 reg blkr_cnt_c_1;
 
-wire N_cnt_c = (N_cnt == (BUFW/BURST));
+//wire N_cnt_c = (N_cnt == (BUFW/BURST));
+//for now, bufw will never larger than burst!
+wire N_cnt_c = 1;
 wire lm_cnt_c = (lm_cnt == LM);
 wire blk_cnt_c = (blk_cnt == BLK_IN_ROW);
 wire blkr_cnt_c = (blkr_cnt == BLK_ROW_IN_MAP);
@@ -70,7 +77,7 @@ wire [AW-1:0] addr_nxt = init_addr_en ? init_addr
 												: ~lm_cnt_c 	 ? blk_raddr_r + IW
 												//: ~blk_cnt_c   ? blk_paddr_r + BUFW
 												: addr_r + 1;// assume that this feature map is not the last one.
-wire [AW-1:0] addr_blk_nxt = blk_paddr_r + BUFW;
+wire [AW-1:0] addr_blk_nxt = blk_paddr_r + RAL;
 wire blkr_cnt_f = blkr_cnt_c & ~blkr_cnt_c_1;
 wire blk_cnt_f = blk_cnt_c & ~blk_cnt_c_1;
 wire lm_cnt_f = lm_cnt_c & ~lm_cnt_c_1;
@@ -97,7 +104,7 @@ always@(posedge clk) N_cnt_c_1 <= N_cnt_c;
 always@(posedge clk) begin
 	if (~rst_n) lm_cnt <= 0;
 	else if(result_valid) lm_cnt <= 0;
-	else if (N_cnt_ff) lm_cnt <= lm_cnt_c ? 0 : lm_cnt + 8'b1;
+	else if (N_cnt_ff || (BUFW_EQ_BURST & rlast)) lm_cnt <= lm_cnt_c ? 0 : lm_cnt + 8'b1;
 end
 
 always@(posedge clk) lm_cnt_c_1 <= lm_cnt_c;

@@ -1,7 +1,9 @@
 `timescale 1ns/1ns
 module addr_gen_tb;
 
-parameter AW = 32, KSIZE = 3, POX = 16, POY = 3, STRIDE = 1, IW = 224, IH = 224, BURST = 16;
+//BUFW = 16*1+1 = 17. BUFW/BURST=1
+//a burst transfer a buffer row!!
+parameter AW = 32, KSIZE = 3, POX = 15, POY = 3, STRIDE = 2, IW = 224, IH = 224, BURST = 32;
 
 logic clk, rst_n, data_load, dw_comp,init_addr_en, result_valid, blkend, mapend, rlast, arvalid;
 logic [AW-1:0] init_addr, araddr;

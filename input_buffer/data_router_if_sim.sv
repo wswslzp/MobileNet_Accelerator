@@ -1,9 +1,10 @@
 module data_router_if_sim#(
 	parameter DW = 32,
-	parameter POY = 3,
-	parameter POX = 16,
-	parameter KSIZE = 3,
-	parameter STRIDE = 1
+	POY = 3,
+	POX = 16,
+	KSIZE = 3,
+	STRIDE = 1,
+	BUFW = 32// bufw = burst
 )(
 	input 						clk,
 	input 						rst_n,
@@ -13,7 +14,7 @@ module data_router_if_sim#(
 	input [1:0]				rpsel,
 	input [7:0]				rbank,
 	input [7:0]				rrow,
-	input [27:0]			rcol
+	input [27:0]			rcol,
 
 	// from sender 
 	input [DW-1:0]		wdata,
@@ -23,8 +24,8 @@ module data_router_if_sim#(
 );
 
 localparam 
-BUFW = 2*STRIDE,
-BUFW = (POX*STRIDE+KSIZE/2),
+BUFH = 2*STRIDE,
+RAL = ((POX-1)*STRIDE+KSIZE),
 LM	 = ((STRIDE+1)*POY-STRIDE);
 
 localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;
