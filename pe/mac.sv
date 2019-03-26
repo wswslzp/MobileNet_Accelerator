@@ -24,7 +24,7 @@ assign result = cnt_c ? partial_sum[DW-1:0] : 'b0;
 always@(posedge clk) begin
 	if (~rst_n) partial_sum <= 'b0;
 	else if (cnt_c == 1'b1) partial_sum <= 'b0;
-	else partial_sum <= partial_sum_nxt[DW-1:0];
+	else if (ena == 1'b1) partial_sum <= partial_sum_nxt[DW-1:0];
 end
 
 always@(posedge clk) begin

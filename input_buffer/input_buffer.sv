@@ -23,7 +23,7 @@ module input_buffer#(
 	output 					arvalid,
 	output[3:0] 		arburst,
 
-	input 					weight_load,//unused
+	output 					weight_load,
 	input 					result_valid,
 
 	input 					data_load,

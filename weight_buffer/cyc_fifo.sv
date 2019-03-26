@@ -51,7 +51,8 @@ end
 // when to output the pixel?
 // get blkend? or something else?
 // o_ready must last for the same period
-// of dwpe_ena
+// of dwpe_ena:NO!!!!
+// dw_ready shall 4 cycles prior to dwpe_ena
 always @(posedge clk) begin
 	if (~rst_n) rptr_r <= 0;
 	else if (rptr_r_f) rptr_r <= 0;

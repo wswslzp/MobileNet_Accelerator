@@ -7,7 +7,7 @@ module mux#(
 	// This bank signal's width is fixed,
 	// which means that bank's quantity cannot 
 	// be configured more than 4.
-	input [1:0]			bank, 
+	input [7:0]			bank, 
 	output reg [DW-1:0]	odata[BUFW]
 );
 

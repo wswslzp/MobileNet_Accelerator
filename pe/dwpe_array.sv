@@ -10,7 +10,7 @@ module dwpe_array#(
 
 	input 				 clk,
 	input 				 rst_n,
-	input 				 pe_ena
+	input 				 dwpe_ena
 );
 
 //wire [DW-1:0] 
@@ -22,7 +22,7 @@ generate
 				 .POX(POX)
 				 ) u_dwpe (.clk,
 								 .rst_n,
-								 .pe_ena,
+								 .dwpe_ena,
 								 .pixel_array(pixel_array[i]),
 								 .weight(weight),
 								 .result(result[i]),

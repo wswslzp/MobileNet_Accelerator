@@ -23,6 +23,7 @@ module addr_gen#(
 	// block.Not a partial sum!
 	input 					result_valid,
 
+	output 					weight_load,
 	output 					blkend,
 	output 					mapend,
 	input 					rlast,
@@ -45,6 +46,7 @@ localparam BUFW_EQ_BURST = (BUFW == BURST);
 
 reg [7:0] N_cnt;
 reg [7:0] lm_cnt;
+reg [15:0] lm_cnt_c_len_cnt;
 reg [7:0] blk_cnt;//count blk in a row!
 reg [7:0] blkr_cnt;//count row number 
 reg [AW-1:0] addr_r;
@@ -89,6 +91,7 @@ assign araddr = addr_r;
 assign arvalid = arvalid_r;
 assign blkend = lm_cnt_f;
 assign mapend = blkr_cnt_f;
+assign weight_load = (lm_cnt == (LM-1)) & rlast;
 
 //TODO: the whole logic maybe wrong??? NO, cnts signal
 //keep more than one cycles and must overlap the rlast
