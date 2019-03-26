@@ -2,7 +2,7 @@
 module data_path_tb;
 
 parameter DW = 32, AW = 32,
-	IW = 32, IH = 32, KSIZE = 3,
+	IW = 32, IH = 32, IC = 3, KSIZE = 3,
 	POX = 15, POY = 3, STRIDE = 2,
 	BURST = 32, BUFW = BURST;
 
@@ -19,7 +19,7 @@ axi_bus_if#(DW, AW) bus2(clk);
 
 sdram_sim #(
 	.DW(DW),
-	.DP(IW*IH),
+	.DP(IW*IH*IC),
 	.AW(AW)
 )u_sdram_sim_1(
 	.dram_if(bus1)
@@ -27,7 +27,7 @@ sdram_sim #(
 
 sdram_sim #(
 	.DW(DW),
-	.DP(IW*IH),
+	.DP(IW*IH*IC),
 	.AW(AW)
 )u_sdram_sim_2(
 	.dram_if(bus2)
@@ -61,9 +61,16 @@ data_path#(
 	.arvalid_1(bus2.arvalid)
 );
 
-data_path_test#(AW) u_test(.*, 
-													 .result_valid(result_valid[0][0])
-													 );
+data_path_test#(
+	.AW(AW),
+	.IW(IW),
+	.IH(IH),
+	.BUFW(BURST),
+	.KSIZE(KSIZE),
+	.BUFH(2*STRIDE)
+) u_test(.*, 
+				 .result_valid(result_valid[0][0])
+			 );
 
 initial begin
 	rst_n = 0;
