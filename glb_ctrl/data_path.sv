@@ -35,7 +35,7 @@ module data_path#(
 	//from glb_ctrl
 	input 					data_load,
 	//input 					weight_load,
-	input 					dw_comp,//unused
+	input [1:0]			dw_comp,//unused
 	input [AW-1:0]	data_init_addr,
 	input [AW-1:0]	weight_init_addr,
 	input 					data_init_addr_en,

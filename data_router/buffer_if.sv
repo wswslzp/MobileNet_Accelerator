@@ -16,7 +16,7 @@ module buffer_if#(
 	// glb_ctrl
 	// we didn't implement the pw function
 	// so this signal is temporally needless
-	input 					dw_comp, 
+	input [1:0]			dw_comp, 
 	//input [1:0] 		stride,
 
 	// reg_array control
