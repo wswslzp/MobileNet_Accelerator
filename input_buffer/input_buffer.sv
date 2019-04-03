@@ -11,8 +11,8 @@ module input_buffer#(
 	BURST = 32,
 	BUFW = BURST
 )(
-	input clk, 
-	input rst_n, 
+	input 					clk, 
+	input 					rst_n, 
 	
 	input [DW-1:0] 	rdata,
 	input 					rvalid,
