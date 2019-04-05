@@ -1,6 +1,9 @@
 module axi_bus_sim#(
 	parameter DW = 32,
-	parameter AW = 32
+	parameter AW = 32,
+	IW = 224,
+	IH = 224,
+	IN = 10
 )(
 	input 					clk,
 	input 					rst_n,
@@ -14,8 +17,10 @@ module axi_bus_sim#(
 	output 					rvalid
 );
 
-reg [DW-1:0] mem[1024];//addr width=10
-reg [9:0] addr_r;
+localparam MS = IW*IH*IN;
+
+reg [DW-1:0] mem[MS];//addr width=10
+reg [AW-1:0] addr_r;
 reg [13:0] burst_r;
 reg ovld;
 reg [DW-1:0] rdata_r;
@@ -23,7 +28,7 @@ reg rvalid_r;
 reg [13:0] burst_cnt;
 reg arready_r;
 
-wire [9:0] addr = araddr[9:0];
+wire [AW-1:0] addr = araddr;
 wire burst_cnt_f = (burst_cnt != 0)
 								&& (burst_cnt == burst_r);
 
@@ -33,7 +38,7 @@ assign rdata = rdata_r;
 assign rvalid = rvalid_r & ovld;
 
 initial begin
-	for(int i = 0; i < 1024; i++)
+	for(int i = 0; i < MS; i++)
 		mem[i] = i;
 end
 

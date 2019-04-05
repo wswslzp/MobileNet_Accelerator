@@ -7,9 +7,10 @@ parameter
 	KSIZE = 3,
 	POX = 15,
 	POY = 3,
-	STRIDE = 2,
+	STRIDE = 2, //BUFH = 2*2=4
 	IW = 224,
 	IH = 224,
+	IN = 10, // Number of image
 	BURST = 32,
 	BUFW = BURST;
 
@@ -22,9 +23,17 @@ logic [3:0] arburst;
 logic [27:0] rcol;
 logic [AW-1:0] araddr, init_addr;
 logic [DW-1:0] rdata, odata[POY][BUFW];
-logic fifo_read, dwpe_ena, wvalid;
+logic fifo_read, dwpe_ena;
+logic [AW-1:0] init_addr_cnt = 0;
+const int BUFH = 4, LM = (STRIDE + 1) * POY - STRIDE;
 
-axi_bus_sim#(32,32)
+axi_bus_sim#(
+	.DW(DW),
+	.AW(AW),
+	.IW(IW),
+	.IH(IH),
+	.IN(IN)
+)
 u_axi_bus_sim(
 	.*);
 
@@ -77,17 +86,50 @@ initial begin
 	rst_n = 1;
 
 	repeat(10) @(posedge clk);
-	data_load = 1;
-	init_addr_en = 1;
+	//data_load = 1;
+	//init_addr_en = 1;
 	init_addr = 32'ha;
-	@(posedge clk) init_addr_en = 0;
+	//@(posedge clk) init_addr_en = 0;
 
-	@(posedge blkend);
-	data_load = 0;
-	repeat(12) @(posedge clk);
-	result_valid = 1;
-	@(posedge clk);
-	result_valid = 0;
+	//for(int i = 0; i < IH/BUFH; i++) begin
+	//	$display("The %d block compute start", i);
+	//	data_load = 1;
+	//	if (i == 0) data_init_addr_en = 1;
+	//	@(posedge clk);
+	//	data_init_addr_en = 0;
+	//	wait(blkend == 1);
+	//	data_load = 0;
+	//	@(negedge result_valid);
+	//end
+
+	//TODO: Mapend got some problem!
+	repeat(IN) begin
+		for(int i = 0; i < IH/LM; i++) begin
+			for(int j = 0; j < IW/BUFW; j++) begin
+				data_load = 1;
+				if (i==0 && j==0) begin
+					init_addr_en = 1;
+					init_addr = init_addr_cnt;
+					@(posedge clk) init_addr_en = 0;
+				end
+				wait(blkend==1);
+				//alternative: @(posedge blkend);???
+				data_load = 0;
+				repeat(12) @(posedge clk);
+				result_valid = 1;
+				@(posedge clk);
+				result_valid = 0;
+			end
+		end
+		init_addr_cnt = init_addr_cnt + IH*IW;
+	end
+
+	//@(posedge blkend);
+	//data_load = 0;
+	//repeat(12) @(posedge clk);
+	//result_valid = 1;
+	//@(posedge clk);
+	//result_valid = 0;
 
 	repeat(100) @(posedge clk);
 	$stop;
