@@ -5,7 +5,7 @@ parameter DW = 32,
 	POY = 3,
 	POX = 16,
 	BUFW = 48,
-	KSIZE = 3,
+	KSIZE = 5,
 	STRIDE = 2;
 parameter BUFH = STRIDE+1;
 

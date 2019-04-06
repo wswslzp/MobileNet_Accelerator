@@ -31,7 +31,8 @@ module buffer_if#(
 
 reg [3:0] shift_cnt; //shift maxium smaller than 9
 reg [1:0] init_trans_cnt; //stride maxium is 2
-reg [1:0] ntrans_cnt; //poy=3,stride=1,2
+reg [3:0] ntrans_cnt; //poy=3,stride=1,2
+//reg [1:0] ntrans_cnt; //poy=3,stride=1,2
 reg [7:0] bank_r;
 reg [1:0] rpsel_r;
 reg [7:0] row_r;
@@ -54,7 +55,11 @@ localparam IDLE = 3'h0, INITTRAN_1 = 3'h1, INITTRAN_2 = 3'h2,
 
 wire shift_cnt_f = (shift_cnt == (KSIZE - 2));
 wire init_trans_cnt_f = (init_trans_cnt == STRIDE);
-wire ntrans_cnt_f = (ntrans_cnt == (POY - STRIDE)); 
+// TODO:This got some problem: when k greater than 3, ntrans 
+// shall not be 2
+// DONE!
+wire ntrans_cnt_f = (ntrans_cnt == (KSIZE-STRIDE)); 
+//wire ntrans_cnt_f = (ntrans_cnt == (POY - STRIDE)); 
 wire bank_r_f = (bank_r == POY-1);
 wire shift_state_detect = (state == SHIFT);
 
@@ -101,6 +106,7 @@ always@* begin
 	endcase
 end
 
+// IDLE: 3'h0
 task idle;
 	dwpe_ena_r <= 0;
 	shift_cnt <= 0;
@@ -114,17 +120,20 @@ task idle;
 		reg_array_cmd_r[i] <= NE;
 endtask 
 
+//INTITRAN_1: 3'h1
 task init_trans_read; // 3 cycles to response
 	rpsel_r <= RR;
 	row_r <= init_trans_cnt;
 	init_trans_cnt <= ~init_trans_cnt_f ? init_trans_cnt + 2'h1 : '0;
 endtask
 
+//INITTRAN_2: 3'h2
 task init_trans_reci;
 	foreach(reg_array_cmd_r[i]) reg_array_cmd_r[i] <= IB;
 	//dwpe_ena_r <= 1'b1;
 endtask 
 
+//SHIFT: 3'h3
 task shift;
 	if (shift_cnt_f == 1'b1 && init_trans_cnt_f == 1'b1) begin
 		rpsel_r <= BR;
@@ -140,6 +149,7 @@ task shift;
 	foreach(reg_array_cmd_r[i]) reg_array_cmd_r[i] <= SF;
 endtask 
 
+//NTRAN_1: 3'h4
 task norm_trans_read;
 	ntrans_cnt <= ~ntrans_cnt_f ? ntrans_cnt + 1 : '0;
 	foreach(reg_array_cmd_r[i]) begin
