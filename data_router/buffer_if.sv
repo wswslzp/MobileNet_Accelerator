@@ -55,11 +55,7 @@ localparam IDLE = 3'h0, INITTRAN_1 = 3'h1, INITTRAN_2 = 3'h2,
 
 wire shift_cnt_f = (shift_cnt == (KSIZE - 2));
 wire init_trans_cnt_f = (init_trans_cnt == STRIDE);
-// TODO:This got some problem: when k greater than 3, ntrans 
-// shall not be 2
-// DONE!
 wire ntrans_cnt_f = (ntrans_cnt == (KSIZE-STRIDE)); 
-//wire ntrans_cnt_f = (ntrans_cnt == (POY - STRIDE)); 
 wire bank_r_f = (bank_r == POY-1);
 wire shift_state_detect = (state == SHIFT);
 

@@ -5,8 +5,8 @@ parameter DW = 32,
 	POY = 3,
 	POX = 16,
 	BUFW = 48,
-	KSIZE = 5,
-	STRIDE = 2;
+	KSIZE = 4,
+	STRIDE = 1;
 parameter BUFH = STRIDE+1;
 
 logic clk, rst_n, blkend, dwpe_ena;
