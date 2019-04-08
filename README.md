@@ -1,3 +1,3 @@
 # CNN Accelerator
 
-Code remote storage
+人工智能加速电路探索
