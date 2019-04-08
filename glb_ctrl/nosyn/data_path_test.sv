@@ -51,7 +51,8 @@ initial
 				if (i == 0) data_init_addr_en = 1;
 				@(posedge clk);
 				data_init_addr_en = 0;
-				wait(blkend == 1);
+				//wait(blkend == 1);
+				@(negedge blkend);
 				data_load = 0;
 				@(negedge result_valid);
 			end

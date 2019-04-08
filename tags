@@ -12,6 +12,8 @@ ARBT_NUM	general\\sirv_gnrl_icbs.v	/^  parameter ARBT_NUM = 4,$/;"	c	module:sirv
 ARBT_PTR_W	general\\sirv_gnrl_icbs.v	/^  parameter ARBT_PTR_W = 2$/;"	c	module:sirv_gnrl_icb_arbt
 ARBT_SCHEME	general\\sirv_gnrl_icbs.v	/^  parameter ARBT_SCHEME = 0,\/\/0: priority based; 1: rrobin$/;"	c	module:sirv_gnrl_icb_arbt
 AR_CHNL_W	general\\sirv_gnrl_icbs.v	/^localparam AR_CHNL_W = 4+3+2+4+3+2+AW;$/;"	c	module:sirv_gnrl_axi_buffer
+AW	accelerator.sv	/^	AW = 32,$/;"	c	module:accelerator
+AW	accelerator_test.sv	/^	AW = 32,$/;"	c	program:accelerator_test
 AW	general\\sirv_1cyc_sram_ctrl.v	/^    parameter AW = 32,$/;"	c	module:sirv_1cyc_sram_ctrl
 AW	general\\sirv_gnrl_icbs.v	/^    parameter AW = 32,$/;"	c	module:sirv_gnrl_axi_buffer
 AW	general\\sirv_gnrl_icbs.v	/^  parameter AW = 32 $/;"	c	module:sirv_gnrl_icb32towishb8
@@ -24,6 +26,8 @@ AW	general\\sirv_gnrl_icbs.v	/^  parameter AW = 32,$/;"	c	module:sirv_gnrl_icb_s
 AW	general\\sirv_gnrl_ram.v	/^  parameter AW = 15 $/;"	c	module:sirv_gnrl_ram
 AW	general\\sirv_sim_ram.v	/^  parameter AW = 32 $/;"	c	module:sirv_sim_ram
 AW	general\\sirv_sram_icb_ctrl.v	/^    parameter AW = 32,$/;"	c	module:sirv_sram_icb_ctrl
+AW	glb_ctrl/data_path.sv	/^	AW = 32,$/;"	c	module:data_path
+AW	glb_ctrl/glb_ctrl.sv	/^	AW = 32,$/;"	r	module:glb_ctrl
 AW	glb_ctrl\\data_path.sv	/^	AW = 32,$/;"	c	module:data_path
 AW	glb_ctrl\\glb_ctrl.sv	/^	AW = 32,$/;"	r	module:glb_ctrl
 AW	glb_ctrl\\nosyn\\axi_if.sv	/^	parameter AW = 32$/;"	c	interface:axi_bus_if
@@ -46,27 +50,29 @@ AXI_FIFO_CUT_READY	general\\sirv_gnrl_icbs.v	/^  parameter AXI_FIFO_CUT_READY = 
 AXI_FIFO_DP	general\\sirv_gnrl_icbs.v	/^  parameter AXI_FIFO_DP = 0, \/\/ This is to optionally add the pipeline stage for AXI bus$/;"	c	module:sirv_gnrl_icb2axi
 BLK_IN_ROW	input_buffer\\addr_gen.sv	/^localparam BLK_IN_ROW = IW \/ BUFW;$/;"	c	module:addr_gen
 BLK_ROW_IN_MAP	input_buffer\\addr_gen.sv	/^localparam BLK_ROW_IN_MAP = IH \/ LM;$/;"	c	module:addr_gen
-BR	data_router/buffer_if.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:buffer_if
 BR	data_router\\buffer_if.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:buffer_if
 BR	data_router\\data_router_if_sim.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:data_router_if_sim
 BR	input_buffer\\data_router_if_sim.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:data_router_if_sim
-BUFH	data_router/data_router_tb.sv	/^parameter BUFH = STRIDE+1;$/;"	c	module:data_router_tb
+BUFH	accelerator.sv	/^localparam BUFH = 2*STRIDE;$/;"	c	module:accelerator
 BUFH	data_router\\data_router_if_sim.sv	/^	parameter BUFH = 3,$/;"	c	module:data_router_if_sim
 BUFH	data_router\\data_router_tb.sv	/^parameter BUFH = STRIDE+1;$/;"	c	module:data_router_tb
+BUFH	glb_ctrl/glb_ctrl.sv	/^	BUFH = 4$/;"	r	module:glb_ctrl
 BUFH	glb_ctrl\\glb_ctrl.sv	/^	BUFH = 4$/;"	r	module:glb_ctrl
 BUFH	glb_ctrl\\nosyn\\data_path_test.sv	/^	BUFH = 4$/;"	r	program:data_path_test
 BUFH	input_buffer\\addr_gen.sv	/^localparam BUFH = STRIDE+1;$/;"	c	module:addr_gen
 BUFH	input_buffer\\data_router_if_sim.sv	/^BUFH = 2*STRIDE,$/;"	c	module:data_router_if_sim
 BUFH	input_buffer\\input_buffer_tb.sv	/^const int BUFH = 4, LM = (STRIDE + 1) * POY - STRIDE;$/;"	r	module:input_buffer_tb
 BUFH	input_buffer\\sender.sv	/^BUFH = 2*STRIDE,$/;"	c	module:sender
-BUFW	data_router/data_router_tb.sv	/^	BUFW = 48,$/;"	c	module:data_router_tb
+BUFW	accelerator.sv	/^localparam BUFW = BURST;$/;"	c	module:accelerator
 BUFW	data_router\\data_router.sv	/^	parameter BUFW = 32,$/;"	c	module:data_router
 BUFW	data_router\\data_router_if_sim.sv	/^	parameter BUFW = 32,$/;"	c	module:data_router_if_sim
 BUFW	data_router\\data_router_tb.sv	/^	BUFW = 48,$/;"	c	module:data_router_tb
 BUFW	data_router\\mux.sv	/^	parameter BUFW = 32$/;"	c	module:mux
 BUFW	data_router\\reg_array.sv	/^	parameter BUFW = 32,$/;"	c	module:reg_array
 BUFW	data_router\\syn_fifo.sv	/^	parameter BUFW = 32$/;"	c	module:syn_fifo
-BUFW	glb_ctrl\\data_path.sv	/^	BUFW = BURST$/;"	c	module:data_path
+BUFW	glb_ctrl/data_path.sv	/^localparam BUFW = BURST;$/;"	c	module:data_path
+BUFW	glb_ctrl/glb_ctrl.sv	/^	BUFW = 32,$/;"	r	module:glb_ctrl
+BUFW	glb_ctrl\\data_path.sv	/^localparam BUFW = BURST;$/;"	c	module:data_path
 BUFW	glb_ctrl\\glb_ctrl.sv	/^	BUFW = 32,$/;"	r	module:glb_ctrl
 BUFW	glb_ctrl\\nosyn\\data_path_tb.sv	/^	BURST = 32, BUFW = BURST;$/;"	c	module:data_path_tb
 BUFW	glb_ctrl\\nosyn\\data_path_test.sv	/^	BUFW = 32,$/;"	r	program:data_path_test
@@ -76,7 +82,9 @@ BUFW	input_buffer\\input_buffer.sv	/^	BUFW = BURST$/;"	c	module:input_buffer
 BUFW	input_buffer\\input_buffer_tb.sv	/^	BUFW = BURST;$/;"	c	module:input_buffer_tb
 BUFW_EQ_BURST	input_buffer\\addr_gen.sv	/^localparam BUFW_EQ_BURST = (BUFW == BURST);$/;"	c	module:addr_gen
 BUF_CMD_PACK_W	general\\sirv_sram_icb_ctrl.v	/^  localparam BUF_CMD_PACK_W = (AW+DW+MW+USR_W+1);$/;"	c	module:sirv_sram_icb_ctrl
-BURST	glb_ctrl\\data_path.sv	/^	BURST = 32,$/;"	c	module:data_path
+BURST	accelerator.sv	/^	BURST = 32,$/;"	c	module:accelerator
+BURST	glb_ctrl/data_path.sv	/^	BURST = 32$/;"	c	module:data_path
+BURST	glb_ctrl\\data_path.sv	/^	BURST = 32$/;"	c	module:data_path
 BURST	glb_ctrl\\nosyn\\data_path_tb.sv	/^	BURST = 32, BUFW = BURST;$/;"	c	module:data_path_tb
 BURST	input_buffer\\addr_gen.sv	/^	BURST = 32$/;"	c	module:addr_gen
 BURST	input_buffer\\addr_gen_tb.sv	/^parameter AW = 32, KSIZE = 3, POX = 15, POY = 3, STRIDE = 2, IW = 224, IH = 224, BURST = 32;$/;"	c	module:addr_gen_tb
@@ -94,6 +102,8 @@ CMD_CUT_READY	general\\sirv_gnrl_icbs.v	/^  parameter CMD_CUT_READY = 0,$/;"	c	m
 CMD_DP	general\\sirv_gnrl_icbs.v	/^  parameter CMD_DP = 0,$/;"	c	module:sirv_gnrl_icb_buffer
 CMD_PACK_W	general\\sirv_gnrl_icbs.v	/^  localparam CMD_PACK_W = (1+AW+DW+(DW\/8)+1+1+2+2+2+USR_W);$/;"	c	module:sirv_gnrl_icb_buffer
 CNN Accelerator	README.md	/^# CNN Accelerator$/;"	c
+CON	glb_ctrl/glb_ctrl.sv	/^CON = 3'h2,$/;"	r	module:glb_ctrl
+CON	glb_ctrl\\glb_ctrl.sv	/^CON = 3'h2,$/;"	r	module:glb_ctrl
 CUT_READY	general\\sirv_gnrl_bufs.v	/^  parameter CUT_READY = 0,$/;"	c	module:sirv_gnrl_fifo
 CUT_READY	general\\sirv_gnrl_bufs.v	/^  parameter CUT_READY = 0,$/;"	c	module:sirv_gnrl_pipe_stage
 DEPTH	weight_buffer\\cyc_fifo.sv	/^	parameter DEPTH = 9$/;"	c	module:cyc_fifo
@@ -110,7 +120,7 @@ DP	general\\sirv_gnrl_bufs.v	/^  parameter DP = 8,$/;"	c	module:sirv_gnrl_bypbuf
 DP	general\\sirv_gnrl_ram.v	/^#(parameter DP = 32,$/;"	c	module:sirv_gnrl_ram
 DP	general\\sirv_sim_ram.v	/^#(parameter DP = 512,$/;"	c	module:sirv_sim_ram
 DP	glb_ctrl\\nosyn\\data_pool.sv	/^	DP = 32*32,$/;"	c	module:sdram_sim
-DW	data_router/data_router_tb.sv	/^parameter DW = 32,$/;"	c	module:data_router_tb
+DW	accelerator.sv	/^	DW = 32,$/;"	c	module:accelerator
 DW	data_router\\data_router.sv	/^	parameter DW = 32,$/;"	c	module:data_router
 DW	data_router\\data_router_if_sim.sv	/^	parameter DW = 32,$/;"	c	module:data_router_if_sim
 DW	data_router\\data_router_tb.sv	/^parameter DW = 32,$/;"	c	module:data_router_tb
@@ -140,6 +150,7 @@ DW	general\\sirv_gnrl_ram.v	/^  parameter DW = 32,$/;"	c	module:sirv_gnrl_ram
 DW	general\\sirv_gnrl_xchecker.v	/^  parameter DW = 32$/;"	c	module:sirv_gnrl_xchecker
 DW	general\\sirv_sim_ram.v	/^  parameter DW = 32,$/;"	c	module:sirv_sim_ram
 DW	general\\sirv_sram_icb_ctrl.v	/^    parameter DW = 32,\/\/ Can only support 32 or 64bits, no others supported$/;"	c	module:sirv_sram_icb_ctrl
+DW	glb_ctrl/data_path.sv	/^	DW = 32,$/;"	c	module:data_path
 DW	glb_ctrl\\data_path.sv	/^	DW = 32,$/;"	c	module:data_path
 DW	glb_ctrl\\nosyn\\axi_if.sv	/^	parameter DW = 32,$/;"	c	interface:axi_bus_if
 DW	glb_ctrl\\nosyn\\data_path_tb.sv	/^parameter DW = 32, AW = 32,$/;"	c	module:data_path_tb
@@ -163,6 +174,10 @@ DW	weight_buffer\\cyc_fifo.sv	/^	parameter DW = 32,$/;"	c	module:cyc_fifo
 DW	weight_buffer\\cyc_fifo_tb.sv	/^parameter DW = 32, DEPTH = 9;$/;"	c	module:cyc_fifo_tb
 DW	weight_buffer\\weight_buffer.sv	/^	parameter DW = 32,$/;"	c	module:weight_buffer
 DW	weight_buffer\\weight_buffer_tb.sv	/^parameter DW = 32, AW = 32, KSIZE = 3, BURST = 32;$/;"	c	module:weight_buffer_tb
+DWC	glb_ctrl/glb_ctrl.sv	/^DWC = 3'h0,$/;"	r	module:glb_ctrl
+DWC	glb_ctrl\\glb_ctrl.sv	/^DWC = 3'h0,$/;"	r	module:glb_ctrl
+FC	glb_ctrl/glb_ctrl.sv	/^FC  = 3'h3,$/;"	r	module:glb_ctrl
+FC	glb_ctrl\\glb_ctrl.sv	/^FC  = 3'h3,$/;"	r	module:glb_ctrl
 FIFO_CUT_READY	general\\sirv_gnrl_icbs.v	/^  parameter FIFO_CUT_READY = 0,$/;"	c	module:sirv_gnrl_icb2apb
 FIFO_CUT_READY	general\\sirv_gnrl_icbs.v	/^  parameter FIFO_CUT_READY = 0,$/;"	c	module:sirv_gnrl_icb2axi
 FIFO_CUT_READY	general\\sirv_gnrl_icbs.v	/^  parameter FIFO_CUT_READY = 0,$/;"	c	module:sirv_gnrl_icb_arbt
@@ -175,16 +190,17 @@ FIFO_OUTS_NUM	general\\sirv_gnrl_icbs.v	/^  parameter FIFO_OUTS_NUM = 8,$/;"	c	m
 FIFO_OUTS_NUM	general\\sirv_gnrl_icbs.v	/^  parameter FIFO_OUTS_NUM = 8,$/;"	c	module:sirv_gnrl_icb_splt
 FORCE_X2ZERO	general\\sirv_gnrl_ram.v	/^  parameter FORCE_X2ZERO = 1,$/;"	c	module:sirv_gnrl_ram
 FORCE_X2ZERO	general\\sirv_sim_ram.v	/^  parameter FORCE_X2ZERO = 0,$/;"	c	module:sirv_sim_ram
-IB	data_router/buffer_if.sv	/^localparam IB = 2'b00, SF = 2'b01, IF = 2'b10;$/;"	c	module:buffer_if
 IB	data_router\\buffer_if.sv	/^localparam IB = 2'b00, SF = 2'b01, IF = 2'b10;$/;"	c	module:buffer_if
 IB	data_router\\reg_array.sv	/^localparam IB = 2'b00,$/;"	c	module:reg_array
+IC	accelerator_test.sv	/^	IC = 64$/;"	c	program:accelerator_test
 IC	glb_ctrl\\nosyn\\data_path_tb.sv	/^	IW = 32, IH = 32, IC = 3, KSIZE = 3,$/;"	c	module:data_path_tb
 IC	glb_ctrl\\nosyn\\data_path_test.sv	/^	IC = 3,$/;"	r	program:data_path_test
-IDLE	data_router/buffer_if.sv	/^localparam IDLE = 3'h0, INITTRAN_1 = 3'h1, INITTRAN_2 = 3'h2,$/;"	c	module:buffer_if
 IDLE	data_router\\buffer_if.sv	/^localparam IDLE = 3'h0, INITTRAN_1 = 3'h1, INITTRAN_2 = 3'h2,$/;"	c	module:buffer_if
-IF	data_router/buffer_if.sv	/^localparam IB = 2'b00, SF = 2'b01, IF = 2'b10;$/;"	c	module:buffer_if
 IF	data_router\\buffer_if.sv	/^localparam IB = 2'b00, SF = 2'b01, IF = 2'b10;$/;"	c	module:buffer_if
 IF	data_router\\reg_array.sv	/^					 IF = 2'b10,$/;"	c	module:reg_array
+IH	accelerator.sv	/^	IH = 224$/;"	c	module:accelerator
+IH	glb_ctrl/data_path.sv	/^	IH = 224,$/;"	c	module:data_path
+IH	glb_ctrl/glb_ctrl.sv	/^	IH = 32,$/;"	r	module:glb_ctrl
 IH	glb_ctrl\\data_path.sv	/^	IH = 224,$/;"	c	module:data_path
 IH	glb_ctrl\\glb_ctrl.sv	/^	IH = 32,$/;"	r	module:glb_ctrl
 IH	glb_ctrl\\nosyn\\data_path_tb.sv	/^	IW = 32, IH = 32, IC = 3, KSIZE = 3,$/;"	c	module:data_path_tb
@@ -196,10 +212,11 @@ IH	input_buffer\\input_buffer.sv	/^	IH = 224,$/;"	c	module:input_buffer
 IH	input_buffer\\input_buffer_tb.sv	/^	IH = 224,$/;"	c	module:input_buffer_tb
 IN	input_buffer\\axi_bus_sim.sv	/^	IN = 10$/;"	c	module:axi_bus_sim
 IN	input_buffer\\input_buffer_tb.sv	/^	IN = 10, \/\/ Number of image$/;"	c	module:input_buffer_tb
-INITTRAN_1	data_router/buffer_if.sv	/^localparam IDLE = 3'h0, INITTRAN_1 = 3'h1, INITTRAN_2 = 3'h2,$/;"	c	module:buffer_if
 INITTRAN_1	data_router\\buffer_if.sv	/^localparam IDLE = 3'h0, INITTRAN_1 = 3'h1, INITTRAN_2 = 3'h2,$/;"	c	module:buffer_if
-INITTRAN_2	data_router/buffer_if.sv	/^localparam IDLE = 3'h0, INITTRAN_1 = 3'h1, INITTRAN_2 = 3'h2,$/;"	c	module:buffer_if
 INITTRAN_2	data_router\\buffer_if.sv	/^localparam IDLE = 3'h0, INITTRAN_1 = 3'h1, INITTRAN_2 = 3'h2,$/;"	c	module:buffer_if
+IW	accelerator.sv	/^	IW = 224,$/;"	c	module:accelerator
+IW	glb_ctrl/data_path.sv	/^	IW = 224,$/;"	c	module:data_path
+IW	glb_ctrl/glb_ctrl.sv	/^	IW = 32,$/;"	r	module:glb_ctrl
 IW	glb_ctrl\\data_path.sv	/^	IW = 224,$/;"	c	module:data_path
 IW	glb_ctrl\\glb_ctrl.sv	/^	IW = 32,$/;"	r	module:glb_ctrl
 IW	glb_ctrl\\nosyn\\data_path_tb.sv	/^	IW = 32, IH = 32, IC = 3, KSIZE = 3,$/;"	c	module:data_path_tb
@@ -209,13 +226,14 @@ IW	input_buffer\\addr_gen_tb.sv	/^parameter AW = 32, KSIZE = 3, POX = 15, POY = 
 IW	input_buffer\\axi_bus_sim.sv	/^	IW = 224,$/;"	c	module:axi_bus_sim
 IW	input_buffer\\input_buffer.sv	/^	IW = 224,$/;"	c	module:input_buffer
 IW	input_buffer\\input_buffer_tb.sv	/^	IW = 224,$/;"	c	module:input_buffer_tb
-KSIZE	data_router/buffer_if.sv	/^	parameter KSIZE = 3,$/;"	c	module:buffer_if
-KSIZE	data_router/data_router_tb.sv	/^	KSIZE = 4,$/;"	c	module:data_router_tb
+KSIZE	accelerator.sv	/^	KSIZE = 3,$/;"	c	module:accelerator
 KSIZE	data_router\\buffer_if.sv	/^	parameter KSIZE = 3,$/;"	c	module:buffer_if
 KSIZE	data_router\\data_router.sv	/^	parameter KSIZE = 3,$/;"	c	module:data_router
 KSIZE	data_router\\data_router_if_sim.sv	/^	parameter KSIZE = 3,$/;"	c	module:data_router_if_sim
-KSIZE	data_router\\data_router_tb.sv	/^	KSIZE = 3,$/;"	c	module:data_router_tb
+KSIZE	data_router\\data_router_tb.sv	/^	KSIZE = 4,$/;"	c	module:data_router_tb
 KSIZE	data_router\\reg_array.sv	/^	parameter KSIZE = 3,$/;"	c	module:reg_array
+KSIZE	glb_ctrl/data_path.sv	/^	KSIZE=3,$/;"	c	module:data_path
+KSIZE	glb_ctrl/glb_ctrl.sv	/^	KSIZE = 3,$/;"	r	module:glb_ctrl
 KSIZE	glb_ctrl\\data_path.sv	/^	KSIZE=3,$/;"	c	module:data_path
 KSIZE	glb_ctrl\\glb_ctrl.sv	/^	KSIZE = 3,$/;"	r	module:glb_ctrl
 KSIZE	glb_ctrl\\nosyn\\data_path_tb.sv	/^	IW = 32, IH = 32, IC = 3, KSIZE = 3,$/;"	c	module:data_path_tb
@@ -244,7 +262,6 @@ MW	general\\sirv_1cyc_sram_ctrl.v	/^    parameter MW = 4,$/;"	c	module:sirv_1cyc
 MW	general\\sirv_gnrl_ram.v	/^  parameter MW = 4,$/;"	c	module:sirv_gnrl_ram
 MW	general\\sirv_sim_ram.v	/^  parameter MW = 4,$/;"	c	module:sirv_sim_ram
 MW	general\\sirv_sram_icb_ctrl.v	/^    parameter MW = 4,$/;"	c	module:sirv_sram_icb_ctrl
-NE	data_router/buffer_if.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:buffer_if
 NE	data_router\\buffer_if.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:buffer_if
 NE	data_router\\data_router_if_sim.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:data_router_if_sim
 NE	data_router\\reg_array.sv	/^					 NE = 2'b11;$/;"	c	module:reg_array
@@ -253,20 +270,21 @@ NMAX	pe\\dwpe_tb.sv	/^parameter NMAX = KSIZE**2;$/;"	c	module:dwpe_tb
 NMAX	pe\\mac.sv	/^	parameter NMAX = 64$/;"	c	module:mac
 NMAX	pe\\mac_bank.sv	/^	parameter NMAX= 9$/;"	c	module:mac_bank
 NMAX	pe\\svtb\\dwpe_test.sv	/^parameter NMAX = KSIZE**2;$/;"	c	program:dwpe_test
-NTRAN_1	data_router/buffer_if.sv	/^					 SHIFT = 3'h3, NTRAN_1 = 3'h4, NTRAN_2 = 3'h5;$/;"	c	module:buffer_if
 NTRAN_1	data_router\\buffer_if.sv	/^					 SHIFT = 3'h3, NTRAN_1 = 3'h4, NTRAN_2 = 3'h5;$/;"	c	module:buffer_if
-NTRAN_2	data_router/buffer_if.sv	/^					 SHIFT = 3'h3, NTRAN_1 = 3'h4, NTRAN_2 = 3'h5;$/;"	c	module:buffer_if
 NTRAN_2	data_router\\buffer_if.sv	/^					 SHIFT = 3'h3, NTRAN_1 = 3'h4, NTRAN_2 = 3'h5;$/;"	c	module:buffer_if
 N_cnt	input_buffer\\addr_gen.sv	/^reg [7:0] N_cnt;$/;"	r	module:addr_gen
 N_cnt_c	input_buffer\\addr_gen.sv	/^wire N_cnt_c = 1;$/;"	n	module:addr_gen
 N_cnt_c_1	input_buffer\\addr_gen.sv	/^reg N_cnt_c_1;$/;"	r	module:addr_gen
 N_cnt_ff	input_buffer\\addr_gen.sv	/^wire N_cnt_ff = ~N_cnt_c & N_cnt_c_1;$/;"	n	module:addr_gen
 OUTS_CNT_W	general\\sirv_gnrl_icbs.v	/^  parameter OUTS_CNT_W = 1,$/;"	c	module:sirv_gnrl_icb_buffer
-POX	data_router/data_router_tb.sv	/^	POX = 16,$/;"	c	module:data_router_tb
+PO	glb_ctrl/glb_ctrl.sv	/^PO  = 3'h4;$/;"	r	module:glb_ctrl
+PO	glb_ctrl\\glb_ctrl.sv	/^PO  = 3'h4;$/;"	r	module:glb_ctrl
+POX	accelerator.sv	/^	POX = 15,$/;"	c	module:accelerator
 POX	data_router\\data_router.sv	/^	parameter POX = 16,$/;"	c	module:data_router
 POX	data_router\\data_router_if_sim.sv	/^	parameter POX = 16,$/;"	c	module:data_router_if_sim
 POX	data_router\\data_router_tb.sv	/^	POX = 16,$/;"	c	module:data_router_tb
 POX	data_router\\reg_array.sv	/^	parameter POX = 16,$/;"	c	module:reg_array
+POX	glb_ctrl/data_path.sv	/^	POX = 15,$/;"	c	module:data_path
 POX	glb_ctrl\\data_path.sv	/^	POX = 15,$/;"	c	module:data_path
 POX	glb_ctrl\\nosyn\\data_path_tb.sv	/^	POX = 15, POY = 3, STRIDE = 2,$/;"	c	module:data_path_tb
 POX	input_buffer\\addr_gen.sv	/^	POX = 16,$/;"	c	module:addr_gen
@@ -283,13 +301,13 @@ POX	pe\\mac_bank.sv	/^	parameter POX= 3,$/;"	c	module:mac_bank
 POX	pe\\relu.sv	/^	parameter POX=3$/;"	c	module:relu
 POX	pe\\svtb\\dwpe_if.sv	/^	POX = 16,$/;"	c
 POX	pe\\svtb\\dwpe_test.sv	/^parameter POX = 6, DW = 32, KSIZE = 2;$/;"	c	program:dwpe_test
-POY	data_router/buffer_if.sv	/^	parameter POY = 3,$/;"	c	module:buffer_if
-POY	data_router/data_router_tb.sv	/^	POY = 3,$/;"	c	module:data_router_tb
+POY	accelerator.sv	/^	POY = 3,$/;"	c	module:accelerator
 POY	data_router\\buffer_if.sv	/^	parameter POY = 3,$/;"	c	module:buffer_if
 POY	data_router\\data_router.sv	/^	parameter POY = 3,$/;"	c	module:data_router
 POY	data_router\\data_router_if_sim.sv	/^	parameter POY = 3,$/;"	c	module:data_router_if_sim
 POY	data_router\\data_router_tb.sv	/^	POY = 3,$/;"	c	module:data_router_tb
 POY	data_router\\mux.sv	/^	parameter POY = 3,$/;"	c	module:mux
+POY	glb_ctrl/data_path.sv	/^	POY = 3,$/;"	c	module:data_path
 POY	glb_ctrl\\data_path.sv	/^	POY = 3,$/;"	c	module:data_path
 POY	glb_ctrl\\nosyn\\data_path_tb.sv	/^	POX = 15, POY = 3, STRIDE = 2,$/;"	c	module:data_path_tb
 POY	input_buffer\\addr_gen.sv	/^	POY = 3,$/;"	c	module:addr_gen
@@ -300,15 +318,15 @@ POY	input_buffer\\input_buffer_tb.sv	/^	POY = 3,$/;"	c	module:input_buffer_tb
 POY	input_buffer\\sender.sv	/^	parameter POY = 3$/;"	c	module:sender
 POY	input_buffer\\sender_tb.sv	/^parameter DW = 32, STRIDE = 2, POY = 4, POX = 15, KSIZE = 3;$/;"	c	module:sender_tb
 POY	pe\\dwpe_array.sv	/^	parameter POY= 3$/;"	c	module:dwpe_array
-RAL	input_buffer\\addr_gen.sv	/^localparam RAL = ((POX-1)*STRIDE+KSIZE);$/;"	c	module:addr_gen
+PWC	glb_ctrl/glb_ctrl.sv	/^PWC = 3'h1,$/;"	r	module:glb_ctrl
+PWC	glb_ctrl\\glb_ctrl.sv	/^PWC = 3'h1,$/;"	r	module:glb_ctrl
+RAL	input_buffer\\addr_gen.sv	/^localparam RAL = ((POX-1)*STRIDE+KSIZE)+1;$/;"	c	module:addr_gen
 RAL	input_buffer\\data_router_if_sim.sv	/^RAL = ((POX-1)*STRIDE+KSIZE),$/;"	c	module:data_router_if_sim
 RAL	input_buffer\\input_buffer_tb.sv	/^	const int RAL = (POX-1)*STRIDE+KSIZE;$/;"	r	module:input_buffer_tb
 RAL	input_buffer\\sender.sv	/^RAL = ((POX-1)*STRIDE+KSIZE),$/;"	c	module:sender
-RP	data_router/buffer_if.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:buffer_if
 RP	data_router\\buffer_if.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:buffer_if
 RP	data_router\\data_router_if_sim.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:data_router_if_sim
 RP	input_buffer\\data_router_if_sim.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:data_router_if_sim
-RR	data_router/buffer_if.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:buffer_if
 RR	data_router\\buffer_if.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:buffer_if
 RR	data_router\\data_router_if_sim.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:data_router_if_sim
 RR	input_buffer\\data_router_if_sim.sv	/^localparam RR = 2'b00, BR = 2'b01, RP = 2'b10, NE = 2'b11;$/;"	c	module:data_router_if_sim
@@ -316,22 +334,20 @@ RSP_CUT_READY	general\\sirv_gnrl_icbs.v	/^  parameter RSP_CUT_READY = 0,$/;"	c	m
 RSP_DP	general\\sirv_gnrl_icbs.v	/^  parameter RSP_DP = 0,$/;"	c	module:sirv_gnrl_icb_buffer
 RSP_PACK_W	general\\sirv_gnrl_icbs.v	/^  localparam RSP_PACK_W = (2+DW+USR_W);$/;"	c	module:sirv_gnrl_icb_buffer
 R_CHNL_W	general\\sirv_gnrl_icbs.v	/^localparam R_CHNL_W = DW+2+1;$/;"	c	module:sirv_gnrl_axi_buffer
-SF	data_router/buffer_if.sv	/^localparam IB = 2'b00, SF = 2'b01, IF = 2'b10;$/;"	c	module:buffer_if
 SF	data_router\\buffer_if.sv	/^localparam IB = 2'b00, SF = 2'b01, IF = 2'b10;$/;"	c	module:buffer_if
 SF	data_router\\reg_array.sv	/^					 SF = 2'b01,$/;"	c	module:reg_array
-SHIFT	data_router/buffer_if.sv	/^					 SHIFT = 3'h3, NTRAN_1 = 3'h4, NTRAN_2 = 3'h5;$/;"	c	module:buffer_if
 SHIFT	data_router\\buffer_if.sv	/^					 SHIFT = 3'h3, NTRAN_1 = 3'h4, NTRAN_2 = 3'h5;$/;"	c	module:buffer_if
 SPLT_NUM	general\\sirv_gnrl_icbs.v	/^  parameter SPLT_NUM = 4,$/;"	c	module:sirv_gnrl_icb_splt
 SPLT_PTR_1HOT	general\\sirv_gnrl_icbs.v	/^  parameter SPLT_PTR_1HOT = 1,\/\/ Currently we always use 1HOT (i.e., this is configured as 1)$/;"	c	module:sirv_gnrl_icb_splt
 SPLT_PTR_W	general\\sirv_gnrl_icbs.v	/^  parameter SPLT_PTR_W = 4,$/;"	c	module:sirv_gnrl_icb_splt
-STRIDE	data_router/buffer_if.sv	/^	parameter STRIDE = 1$/;"	c	module:buffer_if
-STRIDE	data_router/data_router_tb.sv	/^	STRIDE = 1;$/;"	c	module:data_router_tb
+STRIDE	accelerator.sv	/^	STRIDE = 2,$/;"	c	module:accelerator
 STRIDE	data_router\\buffer_if.sv	/^	parameter STRIDE = 1$/;"	c	module:buffer_if
 STRIDE	data_router\\data_router.sv	/^	parameter STRIDE = 1$/;"	c	module:data_router
 STRIDE	data_router\\data_router_if_sim.sv	/^	parameter STRIDE = 1$/;"	c	module:data_router_if_sim
-STRIDE	data_router\\data_router_tb.sv	/^	STRIDE = 2;$/;"	c	module:data_router_tb
+STRIDE	data_router\\data_router_tb.sv	/^	STRIDE = 1;$/;"	c	module:data_router_tb
 STRIDE	data_router\\reg_array.sv	/^	parameter STRIDE = 1,$/;"	c	module:reg_array
 STRIDE	data_router\\syn_fifo.sv	/^	parameter STRIDE = 2,$/;"	c	module:syn_fifo
+STRIDE	glb_ctrl/data_path.sv	/^	STRIDE=2,$/;"	c	module:data_path
 STRIDE	glb_ctrl\\data_path.sv	/^	STRIDE=2,$/;"	c	module:data_path
 STRIDE	glb_ctrl\\nosyn\\data_path_tb.sv	/^	POX = 15, POY = 3, STRIDE = 2,$/;"	c	module:data_path_tb
 STRIDE	input_buffer\\addr_gen.sv	/^	STRIDE = 2,$/;"	c	module:addr_gen
@@ -353,6 +369,8 @@ VLD_MSK_PAYLOAD	general\\sirv_gnrl_icbs.v	/^  parameter VLD_MSK_PAYLOAD = 0,$/;"
 W_CHNL_W	general\\sirv_gnrl_icbs.v	/^localparam W_CHNL_W = DW+(DW\/8)+1;$/;"	c	module:sirv_gnrl_axi_buffer
 X_W	general\\sirv_gnrl_icbs.v	/^  parameter X_W = 32,$/;"	c	module:sirv_gnrl_icb_n2w
 Y_W	general\\sirv_gnrl_icbs.v	/^  parameter Y_W = 64$/;"	c	module:sirv_gnrl_icb_n2w
+accelerator	accelerator.sv	/^module accelerator#($/;"	m
+accelerator_test	accelerator_test.sv	/^program accelerator_test #($/;"	P
 addr	general\\sirv_gnrl_ram.v	/^  input [AW-1:0]   addr,$/;"	p	module:sirv_gnrl_ram
 addr	general\\sirv_sim_ram.v	/^  input  [AW-1  :0] addr,$/;"	p	module:sirv_sim_ram
 addr	input_buffer\\axi_bus_sim.sv	/^wire [AW-1:0] addr = araddr;$/;"	n	module:axi_bus_sim
@@ -392,7 +410,11 @@ araddr	weight_buffer\\axi_bus_sim.sv	/^	input [AW-1:0]	araddr,$/;"	p	module:axi_
 araddr	weight_buffer\\dwaddr_gen.sv	/^	output[AW-1:0]	araddr,$/;"	p	module:dwaddr_gen
 araddr	weight_buffer\\weight_buffer.sv	/^	output[AW-1:0]	araddr,$/;"	p	module:weight_buffer
 araddr	weight_buffer\\weight_buffer_tb.sv	/^logic [AW-1:0] init_addr, araddr;$/;"	r	module:weight_buffer_tb
+araddr_0	accelerator.sv	/^	output[AW-1:0]	araddr_0,$/;"	p	module:accelerator
+araddr_0	glb_ctrl/data_path.sv	/^	output[AW-1:0]	araddr_0,$/;"	p	module:data_path
 araddr_0	glb_ctrl\\data_path.sv	/^	output[AW-1:0]	araddr_0,$/;"	p	module:data_path
+araddr_1	accelerator.sv	/^	output[AW-1:0]	araddr_1,$/;"	p	module:accelerator
+araddr_1	glb_ctrl/data_path.sv	/^	output[AW-1:0]	araddr_1,$/;"	p	module:data_path
 araddr_1	glb_ctrl\\data_path.sv	/^	output[AW-1:0]	araddr_1,$/;"	p	module:data_path
 arbt_ena	general\\sirv_gnrl_icbs.v	/^      wire arbt_ena = 1'b0;\/\/No use$/;"	n	block:sirv_gnrl_icb_arbt.arbt_num_gt_1_gen.priorty_arbt
 arbt_ena	general\\sirv_gnrl_icbs.v	/^wire arbt_ena;$/;"	n	module:sirv_gnrl_icb_arbt
@@ -409,7 +431,11 @@ arburst	weight_buffer\\axi_bus_sim.sv	/^	input [3:0] 		arburst,$/;"	p	module:axi
 arburst	weight_buffer\\dwaddr_gen.sv	/^	output[3:0]			arburst,$/;"	p	module:dwaddr_gen
 arburst	weight_buffer\\weight_buffer.sv	/^	output[3:0] 		arburst,$/;"	p	module:weight_buffer
 arburst	weight_buffer\\weight_buffer_tb.sv	/^logic [3:0] arburst;$/;"	r	module:weight_buffer_tb
+arburst_0	accelerator.sv	/^	output[3:0]			arburst_0,$/;"	p	module:accelerator
+arburst_0	glb_ctrl/data_path.sv	/^	output[3:0]			arburst_0,$/;"	p	module:data_path
 arburst_0	glb_ctrl\\data_path.sv	/^	output[3:0]			arburst_0,$/;"	p	module:data_path
+arburst_1	accelerator.sv	/^	output[3:0]			arburst_1,$/;"	p	module:accelerator
+arburst_1	glb_ctrl/data_path.sv	/^	output[3:0]			arburst_1,$/;"	p	module:data_path
 arburst_1	glb_ctrl\\data_path.sv	/^	output[3:0]			arburst_1,$/;"	p	module:data_path
 arready	glb_ctrl\\nosyn\\axi_if.sv	/^	output arready, rvalid, rdata, rlast;$/;"	p	interface:axi_bus_if
 arready	glb_ctrl\\nosyn\\axi_if.sv	/^logic 					arready;$/;"	r	interface:axi_bus_if
@@ -420,7 +446,11 @@ arready	weight_buffer\\axi_bus_sim.sv	/^	output 					arready,$/;"	p	module:axi_b
 arready	weight_buffer\\dwaddr_gen.sv	/^	input 					arready$/;"	p	module:dwaddr_gen
 arready	weight_buffer\\weight_buffer.sv	/^	input 					arready,$/;"	p	module:weight_buffer
 arready	weight_buffer\\weight_buffer_tb.sv	/^logic clk, rst_n, weight_load, init_addr_en, arvalid, arready, rvalid,$/;"	r	module:weight_buffer_tb
+arready_0	accelerator.sv	/^	input 					arready_0,$/;"	p	module:accelerator
+arready_0	glb_ctrl/data_path.sv	/^	input 					arready_0,$/;"	p	module:data_path
 arready_0	glb_ctrl\\data_path.sv	/^	input 					arready_0,$/;"	p	module:data_path
+arready_1	accelerator.sv	/^	input 					arready_1,$/;"	p	module:accelerator
+arready_1	glb_ctrl/data_path.sv	/^	input 					arready_1,$/;"	p	module:data_path
 arready_1	glb_ctrl\\data_path.sv	/^	input 					arready_1,$/;"	p	module:data_path
 arready_r	input_buffer\\axi_bus_sim.sv	/^reg arready_r;$/;"	r	module:axi_bus_sim
 arready_r	weight_buffer\\axi_bus_sim.sv	/^reg arready_r;$/;"	r	module:axi_bus_sim
@@ -435,7 +465,11 @@ arvalid	weight_buffer\\axi_bus_sim.sv	/^	input 					arvalid,$/;"	p	module:axi_bu
 arvalid	weight_buffer\\dwaddr_gen.sv	/^	output 					arvalid,$/;"	p	module:dwaddr_gen
 arvalid	weight_buffer\\weight_buffer.sv	/^	output 					arvalid,$/;"	p	module:weight_buffer
 arvalid	weight_buffer\\weight_buffer_tb.sv	/^logic clk, rst_n, weight_load, init_addr_en, arvalid, arready, rvalid,$/;"	r	module:weight_buffer_tb
+arvalid_0	accelerator.sv	/^	output 					arvalid_0,$/;"	p	module:accelerator
+arvalid_0	glb_ctrl/data_path.sv	/^	output 					arvalid_0,$/;"	p	module:data_path
 arvalid_0	glb_ctrl\\data_path.sv	/^	output 					arvalid_0,$/;"	p	module:data_path
+arvalid_1	accelerator.sv	/^	output 					arvalid_1,$/;"	p	module:accelerator
+arvalid_1	glb_ctrl/data_path.sv	/^	output 					arvalid_1,$/;"	p	module:data_path
 arvalid_1	glb_ctrl\\data_path.sv	/^	output 					arvalid_1,$/;"	p	module:data_path
 arvalid_cnt	input_buffer\\addr_gen.sv	/^reg [2:0] arvalid_cnt;$/;"	r	module:addr_gen
 arvalid_cnt_c	input_buffer\\addr_gen.sv	/^wire arvalid_cnt_c = (arvalid_cnt == 5);$/;"	n	module:addr_gen
@@ -445,18 +479,13 @@ arvalid_state	input_buffer\\addr_gen.sv	/^reg [1:0] arvalid_state;$/;"	r	module:
 axi_bus_if	glb_ctrl\\nosyn\\axi_if.sv	/^interface axi_bus_if#($/;"	I
 axi_bus_sim	input_buffer\\axi_bus_sim.sv	/^module axi_bus_sim#($/;"	m
 axi_bus_sim	weight_buffer\\axi_bus_sim.sv	/^module axi_bus_sim#($/;"	m
-bank	data_router/buffer_if.sv	/^	output[7:0]			bank,$/;"	p	module:buffer_if
-bank	data_router/data_router_tb.sv	/^logic [7:0] bank, row;$/;"	r	module:data_router_tb
 bank	data_router\\buffer_if.sv	/^	output[7:0]			bank,$/;"	p	module:buffer_if
 bank	data_router\\data_router.sv	/^	output[7:0]			bank,$/;"	p	module:data_router
 bank	data_router\\data_router_if_sim.sv	/^	input [7:0]				bank,$/;"	p	module:data_router_if_sim
 bank	data_router\\data_router_tb.sv	/^logic [7:0] bank, row;$/;"	r	module:data_router_tb
 bank	data_router\\mux.sv	/^	input [7:0]			bank, $/;"	p	module:mux
-bank_r	data_router/buffer_if.sv	/^reg [7:0] bank_r;$/;"	r	module:buffer_if
 bank_r	data_router\\buffer_if.sv	/^reg [7:0] bank_r;$/;"	r	module:buffer_if
-bank_r_f	data_router/buffer_if.sv	/^wire bank_r_f = (bank_r == POY-1);$/;"	n	module:buffer_if
 bank_r_f	data_router\\buffer_if.sv	/^wire bank_r_f = (bank_r == POY-1);$/;"	n	module:buffer_if
-bank_r_f_r	data_router/buffer_if.sv	/^reg bank_r_f_r;$/;"	r	module:buffer_if
 bank_r_f_r	data_router\\buffer_if.sv	/^reg bank_r_f_r;$/;"	r	module:buffer_if
 base	weight_buffer\\cyc_fifo_tb.sv	/^int base = 0;$/;"	r	module:cyc_fifo_tb
 blk_cnt	input_buffer\\addr_gen.sv	/^reg [7:0] blk_cnt;\/\/count blk in a row!$/;"	r	module:addr_gen
@@ -465,12 +494,13 @@ blk_cnt_c_1	input_buffer\\addr_gen.sv	/^reg blk_cnt_c_1;$/;"	r	module:addr_gen
 blk_cnt_f	input_buffer\\addr_gen.sv	/^wire blk_cnt_f = blk_cnt_c & ~blk_cnt_c_1;$/;"	n	module:addr_gen
 blk_paddr_r	input_buffer\\addr_gen.sv	/^reg [AW-1:0] blk_paddr_r;$/;"	r	module:addr_gen
 blk_raddr_r	input_buffer\\addr_gen.sv	/^reg [AW-1:0] blk_raddr_r;$/;"	r	module:addr_gen
-blkend	data_router/buffer_if.sv	/^	input 					blkend,$/;"	p	module:buffer_if
-blkend	data_router/data_router_tb.sv	/^logic clk, rst_n, blkend, dwpe_ena;$/;"	r	module:data_router_tb
+blkend	accelerator.sv	/^wire blkend, mapend;$/;"	n	module:accelerator
 blkend	data_router\\buffer_if.sv	/^	input 					blkend,$/;"	p	module:buffer_if
 blkend	data_router\\data_router.sv	/^	input 					blkend,$/;"	p	module:data_router
 blkend	data_router\\data_router_if_sim.sv	/^	output reg				blkend,$/;"	p	module:data_router_if_sim
 blkend	data_router\\data_router_tb.sv	/^logic clk, rst_n, blkend, dwpe_ena;$/;"	r	module:data_router_tb
+blkend	glb_ctrl/data_path.sv	/^	output 					blkend,$/;"	p	module:data_path
+blkend	glb_ctrl/glb_ctrl.sv	/^	input 					blkend,$/;"	p	module:glb_ctrl
 blkend	glb_ctrl\\data_path.sv	/^	output 					blkend,$/;"	p	module:data_path
 blkend	glb_ctrl\\glb_ctrl.sv	/^	input 					blkend,$/;"	p	module:glb_ctrl
 blkend	glb_ctrl\\nosyn\\data_path_tb.sv	/^logic data_load, dw_comp, data_init_addr_en,  blkend, mapend, result_valid[POY][POX];$/;"	r	module:data_path_tb
@@ -493,7 +523,6 @@ buf_vld_ena	general\\sirv_gnrl_bufs.v	/^wire buf_vld_ena = buf_vld_set | buf_vld
 buf_vld_nxt	general\\sirv_gnrl_bufs.v	/^wire buf_vld_nxt = buf_vld_set | (~buf_vld_clr);$/;"	n	module:sirv_gnrl_cdc_rx
 buf_vld_r	general\\sirv_gnrl_bufs.v	/^wire buf_vld_r;$/;"	n	module:sirv_gnrl_cdc_rx
 buf_vld_set	general\\sirv_gnrl_bufs.v	/^wire buf_vld_set = buf_dat_ena;$/;"	n	module:sirv_gnrl_cdc_rx
-buffer_if	data_router/buffer_if.sv	/^module buffer_if#($/;"	m
 buffer_if	data_router\\buffer_if.sv	/^module buffer_if#($/;"	m
 burst_cnt	input_buffer\\axi_bus_sim.sv	/^reg [13:0] burst_cnt;$/;"	r	module:axi_bus_sim
 burst_cnt	weight_buffer\\axi_bus_sim.sv	/^reg [13:0] burst_cnt;$/;"	r	module:axi_bus_sim
@@ -512,8 +541,20 @@ byp_icb_cmd_usr	general\\sirv_sram_icb_ctrl.v	/^  wire  [USR_W-1:0] byp_icb_cmd_
 byp_icb_cmd_valid	general\\sirv_sram_icb_ctrl.v	/^  wire  byp_icb_cmd_valid;$/;"	n	module:sirv_sram_icb_ctrl
 byp_icb_cmd_wdata	general\\sirv_sram_icb_ctrl.v	/^  wire  [DW-1:0] byp_icb_cmd_wdata; $/;"	n	module:sirv_sram_icb_ctrl
 byp_icb_cmd_wmask	general\\sirv_sram_icb_ctrl.v	/^  wire  [MW-1:0] byp_icb_cmd_wmask; $/;"	n	module:sirv_sram_icb_ctrl
-clk	data_router/buffer_if.sv	/^	input 					clk,$/;"	p	module:buffer_if
-clk	data_router/data_router_tb.sv	/^logic clk, rst_n, blkend, dwpe_ena;$/;"	r	module:data_router_tb
+channal_num	glb_ctrl/glb_ctrl.sv	/^wire [27:0] channal_num = comp_cmd[27:0];$/;"	n	module:glb_ctrl
+channal_num	glb_ctrl\\glb_ctrl.sv	/^wire [27:0] channal_num = comp_cmd[27:0];$/;"	n	module:glb_ctrl
+chn_cnt_nxt	glb_ctrl/glb_ctrl.sv	/^wire [27:0] chn_cnt_nxt = mapend ? $/;"	n	module:glb_ctrl
+chn_cnt_nxt	glb_ctrl\\glb_ctrl.sv	/^wire chn_cnt_nxt = mapend ? $/;"	n	module:glb_ctrl
+chn_cnt_r	glb_ctrl/glb_ctrl.sv	/^reg [27:0] chn_cnt_r;$/;"	r	module:glb_ctrl
+chn_cnt_r	glb_ctrl\\glb_ctrl.sv	/^reg [27:0] chn_cnt_r;$/;"	r	module:glb_ctrl
+chn_cnt_r_c	glb_ctrl/glb_ctrl.sv	/^wire chn_cnt_r_c = (chn_cnt_r == channal_num);$/;"	n	module:glb_ctrl
+chn_cnt_r_c	glb_ctrl\\glb_ctrl.sv	/^wire chn_cnt_r_c = (chn_cnt_r == channal_num);$/;"	n	module:glb_ctrl
+chn_cnt_r_c_1	glb_ctrl/glb_ctrl.sv	/^reg chn_cnt_r_c_1;$/;"	r	module:glb_ctrl
+chn_cnt_r_c_1	glb_ctrl\\glb_ctrl.sv	/^reg chn_cnt_r_c_1;$/;"	r	module:glb_ctrl
+chn_cnt_r_c_r	glb_ctrl/glb_ctrl.sv	/^wire chn_cnt_r_c_r = chn_cnt_r_c & ~chn_cnt_r_c_1;$/;"	n	module:glb_ctrl
+chn_cnt_r_c_r	glb_ctrl\\glb_ctrl.sv	/^wire chn_cnt_r_c_r = chn_cnt_r_c & ~chn_cnt_r_c_1;$/;"	n	module:glb_ctrl
+clk	accelerator.sv	/^	input 					clk,$/;"	p	module:accelerator
+clk	accelerator_test.sv	/^	input logic 							clk,$/;"	p	program:accelerator_test
 clk	data_router\\buffer_if.sv	/^	input 					clk,$/;"	p	module:buffer_if
 clk	data_router\\data_router.sv	/^	input 					clk,$/;"	p	module:data_router
 clk	data_router\\data_router_if_sim.sv	/^	input 						clk,$/;"	p	module:data_router_if_sim
@@ -544,6 +585,8 @@ clk	general\\sirv_gnrl_ram.v	/^  input            clk,$/;"	p	module:sirv_gnrl_ra
 clk	general\\sirv_gnrl_xchecker.v	/^  input clk$/;"	p	module:sirv_gnrl_xchecker
 clk	general\\sirv_sim_ram.v	/^  input             clk, $/;"	p	module:sirv_sim_ram
 clk	general\\sirv_sram_icb_ctrl.v	/^  input  clk,$/;"	p	module:sirv_sram_icb_ctrl
+clk	glb_ctrl/data_path.sv	/^	input 					clk,$/;"	p	module:data_path
+clk	glb_ctrl/glb_ctrl.sv	/^	input 					clk,$/;"	p	module:glb_ctrl
 clk	glb_ctrl\\data_path.sv	/^	input 					clk,$/;"	p	module:data_path
 clk	glb_ctrl\\glb_ctrl.sv	/^	input 					clk,$/;"	p	module:glb_ctrl
 clk	glb_ctrl\\nosyn\\axi_if.sv	/^	input logic clk$/;"	p	interface:axi_bus_if
@@ -564,6 +607,7 @@ clk	pe\\mac.sv	/^	input 					clk,$/;"	p	module:mac
 clk	pe\\mac_bank.sv	/^	input 					clk,$/;"	p	module:mac_bank
 clk	pe\\svtb\\dwpe_if.sv	/^	input 					clk,$/;"	p
 clk	pe\\svtb\\dwpe_if.sv	/^	input bit clk$/;"	p
+clk	shit.v	/^	input clk,$/;"	p	module:shit
 clk	weight_buffer\\axi_bus_sim.sv	/^	input 					clk,$/;"	p	module:axi_bus_sim
 clk	weight_buffer\\cyc_fifo.sv	/^	input clk,$/;"	p	module:cyc_fifo
 clk	weight_buffer\\cyc_fifo_tb.sv	/^logic clk, rst_n, i_valid, full, empty, o_ready;$/;"	r	module:cyc_fifo_tb
@@ -579,15 +623,19 @@ cmd_y_lo_hi	general\\sirv_gnrl_icbs.v	/^    wire cmd_y_lo_hi;$/;"	n	module:sirv_
 cnt	pe\\mac.sv	/^reg [5:0]			cnt;$/;"	r	module:mac
 cnt_c	pe\\mac.sv	/^	output 					cnt_c,$/;"	p	module:mac
 cnt_c	pe\\mac_bank.sv	/^	output 					cnt_c[POX],$/;"	p	module:mac_bank
-col	data_router/buffer_if.sv	/^	output[27:0]  	col,$/;"	p	module:buffer_if
-col	data_router/data_router_tb.sv	/^logic [27:0] col;$/;"	r	module:data_router_tb
 col	data_router\\buffer_if.sv	/^	output[27:0]  	col,$/;"	p	module:buffer_if
 col	data_router\\data_router.sv	/^	output[27:0]		col,$/;"	p	module:data_router
 col	data_router\\data_router_if_sim.sv	/^	input [27:0]			col,$/;"	p	module:data_router_if_sim
 col	data_router\\data_router_tb.sv	/^logic [27:0] col;$/;"	r	module:data_router_tb
-col_r	data_router/buffer_if.sv	/^reg [27:0] col_r;$/;"	r	module:buffer_if
 col_r	data_router\\buffer_if.sv	/^reg [27:0] col_r;$/;"	r	module:buffer_if
+comp_cmd	accelerator.sv	/^	input [31:0]		comp_cmd,$/;"	p	module:accelerator
+comp_cmd	accelerator_test.sv	/^	output logic [31:0] 				comp_cmd,$/;"	p	program:accelerator_test
+comp_cmd	glb_ctrl/glb_ctrl.sv	/^	input [31:0] 		comp_cmd,$/;"	p	module:glb_ctrl
 comp_cmd	glb_ctrl\\glb_ctrl.sv	/^	input [31:0] 		comp_cmd,$/;"	p	module:glb_ctrl
+comp_type	glb_ctrl/glb_ctrl.sv	/^wire [2:0] comp_type = comp_cmd[30:28];$/;"	n	module:glb_ctrl
+comp_type	glb_ctrl\\glb_ctrl.sv	/^wire [2:0] comp_type = comp_cmd[30:28];$/;"	n	module:glb_ctrl
+con_type	glb_ctrl/glb_ctrl.sv	/^wire con_type = comp_cmd == CON;$/;"	n	module:glb_ctrl
+con_type	glb_ctrl\\glb_ctrl.sv	/^wire con_type = comp_cmd == CON;$/;"	n	module:glb_ctrl
 cs	general\\sirv_gnrl_ram.v	/^  input            cs,$/;"	p	module:sirv_gnrl_ram
 cs	general\\sirv_sim_ram.v	/^  input             cs,$/;"	p	module:sirv_sim_ram
 cut_dp_eq1	general\\sirv_gnrl_bufs.v	/^    if(DP == 1) begin:cut_dp_eq1\/\/{$/;"	b	block:sirv_gnrl_fifo.dp_gt0
@@ -596,7 +644,6 @@ cut_ready	general\\sirv_gnrl_bufs.v	/^      if(CUT_READY == 1) begin:cut_ready\/
 cyc_fifo	weight_buffer\\cyc_fifo.sv	/^module cyc_fifo#($/;"	m
 cyc_fifo_tb	weight_buffer\\cyc_fifo_tb.sv	/^module cyc_fifo_tb;$/;"	m
 dat_r	general\\sirv_gnrl_bufs.v	/^wire [DW-1:0] dat_r;$/;"	n	module:sirv_gnrl_cdc_tx
-data	data_router/data_router_tb.sv	/^logic [DW-1:0] data[POY][BUFW], $/;"	r	module:data_router_tb
 data	data_router\\data_router.sv	/^	input [DW-1:0]  data[POY][BUFW],$/;"	p	module:data_router
 data	data_router\\data_router_if_sim.sv	/^	output [DW-1:0]		data[POY][BUFW],$/;"	p	module:data_router_if_sim
 data	data_router\\data_router_tb.sv	/^logic [DW-1:0] data[POY][BUFW], $/;"	r	module:data_router_tb
@@ -612,15 +659,27 @@ data_generate	pe\\svtb\\dwpe_test.sv	/^task automatic data_generate(ref int pixe
 data_generate_done	pe\\dwpe_tb.sv	/^event data_generate_done;$/;"	e	module:dwpe_tb
 data_generate_done	pe\\svtb\\dwpe_test.sv	/^event data_generate_done;$/;"	e	program:dwpe_test
 data_generate_done	weight_buffer\\cyc_fifo_tb.sv	/^event data_generate_done, next_one;$/;"	e	module:cyc_fifo_tb
+data_init_addr	accelerator.sv	/^wire [AW-1:0] data_init_addr, weight_init_addr;$/;"	n	module:accelerator
+data_init_addr	glb_ctrl/data_path.sv	/^	input [AW-1:0]	data_init_addr,$/;"	p	module:data_path
 data_init_addr	glb_ctrl\\data_path.sv	/^	input [AW-1:0]	data_init_addr,$/;"	p	module:data_path
 data_init_addr	glb_ctrl\\nosyn\\data_path_tb.sv	/^logic [AW-1:0] data_init_addr, weight_init_addr;$/;"	r	module:data_path_tb
 data_init_addr	glb_ctrl\\nosyn\\data_path_test.sv	/^	output logic [AW-1:0] data_init_addr,$/;"	p	program:data_path_test
+data_init_addr_en	accelerator.sv	/^wire data_load, dw_comp, data_init_addr_en;$/;"	n	module:accelerator
+data_init_addr_en	glb_ctrl/data_path.sv	/^	input 					data_init_addr_en,$/;"	p	module:data_path
+data_init_addr_en	glb_ctrl/glb_ctrl.sv	/^	output 					data_init_addr_en$/;"	p	module:glb_ctrl
 data_init_addr_en	glb_ctrl\\data_path.sv	/^	input 					data_init_addr_en,$/;"	p	module:data_path
 data_init_addr_en	glb_ctrl\\glb_ctrl.sv	/^	output 					data_init_addr_en$/;"	p	module:glb_ctrl
 data_init_addr_en	glb_ctrl\\nosyn\\data_path_tb.sv	/^logic data_load, dw_comp, data_init_addr_en,  blkend, mapend, result_valid[POY][POX];$/;"	r	module:data_path_tb
 data_init_addr_en	glb_ctrl\\nosyn\\data_path_test.sv	/^	output logic 					data_init_addr_en$/;"	p	program:data_path_test
+data_init_addr_in	accelerator.sv	/^	input [AW-1:0]	data_init_addr_in,$/;"	p	module:accelerator
+data_init_addr_in	accelerator_test.sv	/^	output logic [AW-1:0]			data_init_addr_in,$/;"	p	program:accelerator_test
+data_init_addr_in	glb_ctrl/glb_ctrl.sv	/^	input [AW-1:0] 	data_init_addr_in,$/;"	p	module:glb_ctrl
 data_init_addr_in	glb_ctrl\\glb_ctrl.sv	/^	input [AW-1:0] 	data_init_addr_in,$/;"	p	module:glb_ctrl
+data_init_addr_out	glb_ctrl/glb_ctrl.sv	/^	output[AW-1:0]	data_init_addr_out,$/;"	p	module:glb_ctrl
 data_init_addr_out	glb_ctrl\\glb_ctrl.sv	/^	output[AW-1:0]	data_init_addr_out,$/;"	p	module:glb_ctrl
+data_load	accelerator.sv	/^wire data_load, dw_comp, data_init_addr_en;$/;"	n	module:accelerator
+data_load	glb_ctrl/data_path.sv	/^	input 					data_load,$/;"	p	module:data_path
+data_load	glb_ctrl/glb_ctrl.sv	/^	output 					data_load,$/;"	p	module:glb_ctrl
 data_load	glb_ctrl\\data_path.sv	/^	input 					data_load,$/;"	p	module:data_path
 data_load	glb_ctrl\\glb_ctrl.sv	/^	output 					data_load,$/;"	p	module:glb_ctrl
 data_load	glb_ctrl\\nosyn\\data_path_tb.sv	/^logic data_load, dw_comp, data_init_addr_en,  blkend, mapend, result_valid[POY][POX];$/;"	r	module:data_path_tb
@@ -631,6 +690,11 @@ data_load	input_buffer\\input_buffer.sv	/^	input 					data_load,$/;"	p	module:in
 data_load	input_buffer\\input_buffer_tb.sv	/^logic weight_load, result_valid, data_load, dw_comp;$/;"	r	module:input_buffer_tb
 data_load	input_buffer\\sender.sv	/^	input 					data_load,$/;"	p	module:sender
 data_load	input_buffer\\sender_tb.sv	/^logic clk, rst_n, data_load, rvalid;$/;"	r	module:sender_tb
+data_load_nxt	glb_ctrl/glb_ctrl.sv	/^wire data_load_nxt = comp_cmd[31] ? 1'b1$/;"	n	module:glb_ctrl
+data_load_nxt	glb_ctrl\\glb_ctrl.sv	/^wire data_load_nxt = comp_cmd[31] ? 1'b1$/;"	n	module:glb_ctrl
+data_load_r	glb_ctrl/glb_ctrl.sv	/^reg data_load_r;$/;"	r	module:glb_ctrl
+data_load_r	glb_ctrl\\glb_ctrl.sv	/^reg data_load_r;$/;"	r	module:glb_ctrl
+data_path	glb_ctrl/data_path.sv	/^module data_path#($/;"	m
 data_path	glb_ctrl\\data_path.sv	/^module data_path#($/;"	m
 data_path_tb	glb_ctrl\\nosyn\\data_path_tb.sv	/^module data_path_tb;$/;"	m
 data_path_test	glb_ctrl\\nosyn\\data_path_test.sv	/^program data_path_test#($/;"	P
@@ -639,18 +703,19 @@ data_r	input_buffer\\data_router_if_sim.sv	/^reg [DW-1:0] data_r[POY][BUFW];$/;"
 data_router	data_router\\data_router.sv	/^module data_router#($/;"	m
 data_router_if_sim	data_router\\data_router_if_sim.sv	/^module data_router_if_sim#($/;"	m
 data_router_if_sim	input_buffer\\data_router_if_sim.sv	/^module data_router_if_sim#($/;"	m
-data_router_tb	data_router/data_router_tb.sv	/^module data_router_tb;$/;"	m
 data_router_tb	data_router\\data_router_tb.sv	/^module data_router_tb;$/;"	m
 din	general\\sirv_gnrl_ram.v	/^  input [DW-1:0]   din,$/;"	p	module:sirv_gnrl_ram
 din	general\\sirv_sim_ram.v	/^  input  [DW-1  :0] din, $/;"	p	module:sirv_sim_ram
 din_a	general\\sirv_gnrl_bufs.v	/^  input  [DW-1:0] din_a,$/;"	p	module:sirv_gnrl_sync
-dj	glb_ctrl\\glb_ctrl.sv	/^wire dj$/;"	n	module:glb_ctrl
 dnxt	general\\sirv_gnrl_dffs.v	/^  input      [DW-1:0] dnxt,$/;"	p	module:sirv_gnrl_dffl
 dnxt	general\\sirv_gnrl_dffs.v	/^  input      [DW-1:0] dnxt,$/;"	p	module:sirv_gnrl_dfflr
 dnxt	general\\sirv_gnrl_dffs.v	/^  input      [DW-1:0] dnxt,$/;"	p	module:sirv_gnrl_dfflrs
 dnxt	general\\sirv_gnrl_dffs.v	/^  input      [DW-1:0] dnxt,$/;"	p	module:sirv_gnrl_dffr
 dnxt	general\\sirv_gnrl_dffs.v	/^  input      [DW-1:0] dnxt,$/;"	p	module:sirv_gnrl_dffrs
 dnxt	general\\sirv_gnrl_dffs.v	/^  input      [DW-1:0] dnxt,$/;"	p	module:sirv_gnrl_ltch
+done	accelerator.sv	/^	output 					done,$/;"	p	module:accelerator
+done	accelerator_test.sv	/^	input logic 							done$/;"	p	program:accelerator_test
+done	glb_ctrl/glb_ctrl.sv	/^	output 					done,$/;"	p	module:glb_ctrl
 done	glb_ctrl\\glb_ctrl.sv	/^	output 					done,$/;"	p	module:glb_ctrl
 dout	general\\sirv_gnrl_bufs.v	/^  output [DW-1:0] dout,$/;"	p	module:sirv_gnrl_sync
 dout	general\\sirv_gnrl_ram.v	/^  output[DW-1:0]   dout$/;"	p	module:sirv_gnrl_ram
@@ -668,9 +733,11 @@ ds	general\\sirv_gnrl_ram.v	/^  input            ds,$/;"	p	module:sirv_gnrl_ram
 dut	pe\\svtb\\dwpe_if.sv	/^modport dut($/;"	M
 dw_32	general\\sirv_gnrl_icbs.v	/^    if(DW==32) begin:dw_32$/;"	b	module:sirv_gnrl_icb2axi
 dw_64	general\\sirv_gnrl_icbs.v	/^    if(DW==64) begin:dw_64$/;"	b	module:sirv_gnrl_icb2axi
-dw_comp	data_router/buffer_if.sv	/^	input [1:0]			dw_comp, $/;"	p	module:buffer_if
+dw_comp	accelerator.sv	/^wire data_load, dw_comp, data_init_addr_en;$/;"	n	module:accelerator
 dw_comp	data_router\\buffer_if.sv	/^	input [1:0]			dw_comp, $/;"	p	module:buffer_if
 dw_comp	data_router\\data_router.sv	/^	input [1:0]			dw_comp,$/;"	p	module:data_router
+dw_comp	glb_ctrl/data_path.sv	/^	input 			dw_comp,\/\/unused$/;"	p	module:data_path
+dw_comp	glb_ctrl/glb_ctrl.sv	/^	output 					dw_comp,$/;"	p	module:glb_ctrl
 dw_comp	glb_ctrl\\data_path.sv	/^	input [1:0]			dw_comp,\/\/unused$/;"	p	module:data_path
 dw_comp	glb_ctrl\\glb_ctrl.sv	/^	output 					dw_comp,$/;"	p	module:glb_ctrl
 dw_comp	glb_ctrl\\nosyn\\data_path_tb.sv	/^logic data_load, dw_comp, data_init_addr_en,  blkend, mapend, result_valid[POY][POX];$/;"	r	module:data_path_tb
@@ -681,21 +748,22 @@ dw_comp	input_buffer\\input_buffer.sv	/^	input 					dw_comp,\/\/unused$/;"	p	mod
 dw_comp	input_buffer\\input_buffer_tb.sv	/^logic weight_load, result_valid, data_load, dw_comp;$/;"	r	module:input_buffer_tb
 dw_comp	weight_buffer\\weight_buffer.sv	/^	input 					dw_comp,$/;"	p	module:weight_buffer
 dw_comp	weight_buffer\\weight_buffer_tb.sv	/^	dw_ready, dw_comp, rlast;$/;"	r	module:weight_buffer_tb
+dw_out	glb_ctrl/data_path.sv	/^wire [DW-1:0] dw_out;$/;"	n	module:data_path
 dw_out	glb_ctrl\\data_path.sv	/^wire [DW-1:0] dw_out;$/;"	n	module:data_path
 dw_out	weight_buffer\\weight_buffer.sv	/^	output[DW-1:0] 	dw_out$/;"	p	module:weight_buffer
 dw_out	weight_buffer\\weight_buffer_tb.sv	/^logic [DW-1:0] rdata, dw_out;$/;"	r	module:weight_buffer_tb
 dw_ready	weight_buffer\\weight_buffer.sv	/^	input 					dw_ready,$/;"	p	module:weight_buffer
 dw_ready	weight_buffer\\weight_buffer_tb.sv	/^	dw_ready, dw_comp, rlast;$/;"	r	module:weight_buffer_tb
 dwaddr_gen	weight_buffer\\dwaddr_gen.sv	/^module dwaddr_gen#($/;"	m
+dwc_type	glb_ctrl/glb_ctrl.sv	/^wire dwc_type = comp_cmd == DWC;$/;"	n	module:glb_ctrl
+dwc_type	glb_ctrl\\glb_ctrl.sv	/^wire dwc_type = comp_cmd == DWC;$/;"	n	module:glb_ctrl
 dwpe	pe\\dwpe.sv	/^module dwpe #($/;"	m
 dwpe_array	pe\\dwpe_array.sv	/^module dwpe_array#($/;"	m
-dwpe_done	data_router/data_router_tb.sv	/^event dwpe_done;$/;"	e	module:data_router_tb
 dwpe_done	data_router\\data_router_tb.sv	/^event dwpe_done;$/;"	e	module:data_router_tb
-dwpe_ena	data_router/buffer_if.sv	/^	output 					dwpe_ena\/\/ to dwpe$/;"	p	module:buffer_if
-dwpe_ena	data_router/data_router_tb.sv	/^logic clk, rst_n, blkend, dwpe_ena;$/;"	r	module:data_router_tb
 dwpe_ena	data_router\\buffer_if.sv	/^	output 					dwpe_ena\/\/ to dwpe$/;"	p	module:buffer_if
 dwpe_ena	data_router\\data_router.sv	/^	output 					dwpe_ena,$/;"	p	module:data_router
 dwpe_ena	data_router\\data_router_tb.sv	/^logic clk, rst_n, blkend, dwpe_ena;$/;"	r	module:data_router_tb
+dwpe_ena	glb_ctrl/data_path.sv	/^wire dwpe_ena, weight_load;$/;"	n	module:data_path
 dwpe_ena	glb_ctrl\\data_path.sv	/^wire dwpe_ena, weight_load;$/;"	n	module:data_path
 dwpe_ena	input_buffer\\input_buffer_tb.sv	/^logic fifo_read, dwpe_ena;$/;"	r	module:input_buffer_tb
 dwpe_ena	pe\\dwpe.sv	/^	input 					dwpe_ena,$/;"	p	module:dwpe
@@ -704,19 +772,20 @@ dwpe_ena	pe\\dwpe_tb.sv	/^logic clk, rst_n, dwpe_ena;$/;"	r	module:dwpe_tb
 dwpe_ena	pe\\svtb\\dwpe_if.sv	/^	input 					dwpe_ena,$/;"	p
 dwpe_ena	pe\\svtb\\dwpe_if.sv	/^	output dwpe_ena;$/;"	p
 dwpe_ena	pe\\svtb\\dwpe_if.sv	/^logic rst_n, dwpe_ena, result_valid[POX]$/;"	r
-dwpe_ena_r	data_router/buffer_if.sv	/^reg dwpe_ena_r;$/;"	r	module:buffer_if
 dwpe_ena_r	data_router\\buffer_if.sv	/^reg dwpe_ena_r;$/;"	r	module:buffer_if
-dwpe_ena_r_1	data_router/buffer_if.sv	/^reg dwpe_ena_r_1;$/;"	r	module:buffer_if
 dwpe_ena_r_1	data_router\\buffer_if.sv	/^reg dwpe_ena_r_1;$/;"	r	module:buffer_if
 dwpe_if	pe\\svtb\\dwpe_test.sv	/^	dwpe_if.test if_t$/;"	p	program:dwpe_test
 dwpe_tb	pe\\dwpe_tb.sv	/^module dwpe_tb;$/;"	m
 dwpe_test	pe\\svtb\\dwpe_test.sv	/^program dwpe_test($/;"	P
 dwpixel_array	data_router\\data_router.sv	/^	output[DW-1:0]	dwpixel_array[POY][POX],$/;"	p	module:data_router
+dwpixel_array	glb_ctrl/data_path.sv	/^wire [DW-1:0] dwpixel_array[POY][POX];$/;"	n	module:data_path
 dwpixel_array	glb_ctrl\\data_path.sv	/^wire [DW-1:0] dwpixel_array[POY][POX];$/;"	n	module:data_path
 empty	weight_buffer\\cyc_fifo.sv	/^	output 					empty$/;"	p	module:cyc_fifo
 empty	weight_buffer\\cyc_fifo_tb.sv	/^logic clk, rst_n, i_valid, full, empty, o_ready;$/;"	r	module:cyc_fifo_tb
 ena	pe\\mac.sv	/^	input 					ena,$/;"	p	module:mac
 ena	pe\\mac_bank.sv	/^	input 					ena$/;"	p	module:mac_bank
+fc_type	glb_ctrl/glb_ctrl.sv	/^wire fc_type  = comp_cmd == FC ;$/;"	n	module:glb_ctrl
+fc_type	glb_ctrl\\glb_ctrl.sv	/^wire fc_type  = comp_cmd == FC ;$/;"	n	module:glb_ctrl
 fifo_dp_1	general\\sirv_gnrl_icbs.v	/^    if(FIFO_OUTS_NUM == 1) begin:fifo_dp_1\/\/{$/;"	b	block:sirv_gnrl_icb_splt.splt_num_gt_1_gen
 fifo_dp_1	general\\sirv_gnrl_icbs.v	/^    if(FIFO_OUTS_NUM == 1) begin:fifo_dp_1\/\/{$/;"	b	module:sirv_gnrl_icb_n2w
 fifo_dp_gt_1	general\\sirv_gnrl_icbs.v	/^    else begin: fifo_dp_gt_1\/\/{$/;"	b	block:sirv_gnrl_icb_splt.splt_num_gt_1_gen
@@ -728,7 +797,6 @@ fifo_i_vld	general\\sirv_gnrl_bufs.v	/^  wire          fifo_i_vld;$/;"	n	module:
 fifo_o_dat	general\\sirv_gnrl_bufs.v	/^  wire [DW-1:0] fifo_o_dat;$/;"	n	module:sirv_gnrl_bypbuf
 fifo_o_rdy	general\\sirv_gnrl_bufs.v	/^  wire          fifo_o_rdy;$/;"	n	module:sirv_gnrl_bypbuf
 fifo_o_vld	general\\sirv_gnrl_bufs.v	/^  wire          fifo_o_vld;$/;"	n	module:sirv_gnrl_bypbuf
-fifo_read	data_router/buffer_if.sv	/^	output 					fifo_read,$/;"	p	module:buffer_if
 fifo_read	data_router\\buffer_if.sv	/^	output 					fifo_read,$/;"	p	module:buffer_if
 fifo_read	data_router\\data_router.sv	/^wire 			 fifo_read;$/;"	n	module:data_router
 fifo_read	data_router\\syn_fifo.sv	/^	input 					fifo_read,$/;"	p	module:syn_fifo
@@ -740,8 +808,11 @@ force_x_gen	general\\sirv_sim_ram.v	/^      for (i = 0; i < DW; i = i+1) begin:f
 force_x_to_zero	general\\sirv_sim_ram.v	/^   if(FORCE_X2ZERO == 1) begin: force_x_to_zero$/;"	b	module:sirv_sim_ram
 full	weight_buffer\\cyc_fifo.sv	/^	output 					full,$/;"	p	module:cyc_fifo
 full	weight_buffer\\cyc_fifo_tb.sv	/^logic clk, rst_n, i_valid, full, empty, o_ready;$/;"	r	module:cyc_fifo_tb
+g_result_valid	accelerator.sv	/^wire g_result_valid = result_valid[0][0];$/;"	n	module:accelerator
 gen_data	weight_buffer\\cyc_fifo_tb.sv	/^task gen_data;$/;"	t	module:cyc_fifo_tb
+glb_ctrl	glb_ctrl/glb_ctrl.sv	/^module glb_ctrl#($/;"	m
 glb_ctrl	glb_ctrl\\glb_ctrl.sv	/^module glb_ctrl#($/;"	m
+i	accelerator_test.sv	/^	for(int i = 0; i < 10; i++) begin$/;"	r	program:accelerator_test
 i	data_router\\data_router.sv	/^genvar i;$/;"	r	module:data_router
 i	data_router\\data_router_if_sim.sv	/^	for(int i = 0; i < POY; i++) begin$/;"	r	module:data_router_if_sim
 i	data_router\\data_router_if_sim.sv	/^	for(int i = 0; i < POY; i++) begin$/;"	r	task:data_router_if_sim.rp
@@ -1021,7 +1092,6 @@ icb_buffer_active	general\\sirv_gnrl_icbs.v	/^  output             icb_buffer_ac
 icb_distract_gen	general\\sirv_gnrl_icbs.v	/^    begin:icb_distract_gen$/;"	b	block:sirv_gnrl_icb_arbt.arbt_num_gt_1_gen
 icb_distract_gen	general\\sirv_gnrl_icbs.v	/^    begin:icb_distract_gen$/;"	b	block:sirv_gnrl_icb_splt.splt_num_gt_1_gen
 idata	data_router\\mux.sv	/^	input [DW-1:0] 	idata[POY][BUFW],$/;"	p	module:mux
-idle	data_router/buffer_if.sv	/^task idle;$/;"	t	module:buffer_if
 idle	data_router\\buffer_if.sv	/^task idle;$/;"	t	module:buffer_if
 if_t	pe\\svtb\\dwpe_test.sv	/^	dwpe_if.test if_t$/;"	p	program:dwpe_test
 indata	data_router\\data_router_if_sim.sv	/^reg [DW-1:0] indata[POY][BUFH][BUFW];$/;"	r	module:data_router_if_sim
@@ -1034,7 +1104,6 @@ init_addr	weight_buffer\\dwaddr_gen.sv	/^	input [AW-1:0] 	init_addr,$/;"	p	modul
 init_addr	weight_buffer\\weight_buffer.sv	/^	input [AW-1:0] 	init_addr,$/;"	p	module:weight_buffer
 init_addr	weight_buffer\\weight_buffer_tb.sv	/^logic [AW-1:0] init_addr, araddr;$/;"	r	module:weight_buffer_tb
 init_addr_cnt	input_buffer\\input_buffer_tb.sv	/^logic [AW-1:0] init_addr_cnt = 0;$/;"	r	module:input_buffer_tb
-init_addr_en	glb_ctrl\\glb_ctrl.sv	/^wire init_addr_en = comp_cmd[31];$/;"	n	module:glb_ctrl
 init_addr_en	input_buffer\\addr_gen.sv	/^	input 					init_addr_en,$/;"	p	module:addr_gen
 init_addr_en	input_buffer\\addr_gen_tb.sv	/^logic clk, rst_n, data_load, dw_comp,init_addr_en, result_valid, blkend, mapend, rlast, arvalid;$/;"	r	module:addr_gen_tb
 init_addr_en	input_buffer\\input_buffer.sv	/^	input 					init_addr_en,$/;"	p	module:input_buffer
@@ -1042,13 +1111,9 @@ init_addr_en	input_buffer\\input_buffer_tb.sv	/^logic init_addr_en, blkend, mape
 init_addr_en	weight_buffer\\dwaddr_gen.sv	/^	input 					init_addr_en,$/;"	p	module:dwaddr_gen
 init_addr_en	weight_buffer\\weight_buffer.sv	/^	input 					init_addr_en,$/;"	p	module:weight_buffer
 init_addr_en	weight_buffer\\weight_buffer_tb.sv	/^logic clk, rst_n, weight_load, init_addr_en, arvalid, arready, rvalid,$/;"	r	module:weight_buffer_tb
-init_trans_cnt	data_router/buffer_if.sv	/^reg [1:0] init_trans_cnt; \/\/stride maxium is 2$/;"	r	module:buffer_if
 init_trans_cnt	data_router\\buffer_if.sv	/^reg [1:0] init_trans_cnt; \/\/stride maxium is 2$/;"	r	module:buffer_if
-init_trans_cnt_f	data_router/buffer_if.sv	/^wire init_trans_cnt_f = (init_trans_cnt == STRIDE);$/;"	n	module:buffer_if
 init_trans_cnt_f	data_router\\buffer_if.sv	/^wire init_trans_cnt_f = (init_trans_cnt == STRIDE);$/;"	n	module:buffer_if
-init_trans_read	data_router/buffer_if.sv	/^task init_trans_read; \/\/ 3 cycles to response$/;"	t	module:buffer_if
 init_trans_read	data_router\\buffer_if.sv	/^task init_trans_read; \/\/ 3 cycles to response$/;"	t	module:buffer_if
-init_trans_reci	data_router/buffer_if.sv	/^task init_trans_reci;$/;"	t	module:buffer_if
 init_trans_reci	data_router\\buffer_if.sv	/^task init_trans_reci;$/;"	t	module:buffer_if
 input_buffer	input_buffer\\input_buffer.sv	/^module input_buffer#($/;"	m
 input_buffer_tb	input_buffer\\input_buffer_tb.sv	/^module input_buffer_tb;$/;"	m
@@ -1084,6 +1149,9 @@ mac	pe\\mac.sv	/^module mac #($/;"	m
 mac_bank	pe\\mac_bank.sv	/^module mac_bank#($/;"	m
 mac_result	pe\\dwpe.sv	/^wire [DW-1:0] mac_result[POX];$/;"	n	module:dwpe
 macs	pe\\mac_bank.sv	/^	for (i = 0; i < POX; i++) begin : macs$/;"	b	module:mac_bank
+mapend	accelerator.sv	/^wire blkend, mapend;$/;"	n	module:accelerator
+mapend	glb_ctrl/data_path.sv	/^	output 					mapend,$/;"	p	module:data_path
+mapend	glb_ctrl/glb_ctrl.sv	/^	input 					mapend,$/;"	p	module:glb_ctrl
 mapend	glb_ctrl\\data_path.sv	/^	output 					mapend,$/;"	p	module:data_path
 mapend	glb_ctrl\\glb_ctrl.sv	/^	input 					mapend,$/;"	p	module:glb_ctrl
 mapend	glb_ctrl\\nosyn\\data_path_tb.sv	/^logic data_load, dw_comp, data_init_addr_en,  blkend, mapend, result_valid[POY][POX];$/;"	r	module:data_path_tb
@@ -1123,7 +1191,6 @@ no_force_x_to_zero	general\\sirv_sim_ram.v	/^   else begin:no_force_x_to_zero$/;
 no_mask_output	general\\sirv_gnrl_bufs.v	/^    else begin:no_mask_output\/\/{$/;"	b	block:sirv_gnrl_fifo.dp_gt0
 no_vld_msk_payload	general\\sirv_gnrl_icbs.v	/^      if(VLD_MSK_PAYLOAD == 0) begin: no_vld_msk_payload$/;"	b	block:sirv_gnrl_icb_splt.splt_num_gt_1_gen.o_icb_cmd_valid_gen
 non_last	general\\sirv_sim_ram.v	/^        else begin: non_last$/;"	b	block:sirv_sim_ram.mem
-norm_trans_read	data_router/buffer_if.sv	/^task norm_trans_read;$/;"	t	module:buffer_if
 norm_trans_read	data_router\\buffer_if.sv	/^task norm_trans_read;$/;"	t	module:buffer_if
 not_allow_diff	general\\sirv_gnrl_icbs.v	/^    else begin:not_allow_diff$/;"	b	block:sirv_gnrl_icb_splt.splt_num_gt_1_gen
 nrdy_clr	general\\sirv_gnrl_bufs.v	/^wire nrdy_clr = o_rdy_nedge;$/;"	n	module:sirv_gnrl_cdc_tx
@@ -1131,12 +1198,9 @@ nrdy_ena	general\\sirv_gnrl_bufs.v	/^wire nrdy_ena = nrdy_set | nrdy_clr;$/;"	n	
 nrdy_nxt	general\\sirv_gnrl_bufs.v	/^wire nrdy_nxt = nrdy_set | (~nrdy_clr);$/;"	n	module:sirv_gnrl_cdc_tx
 nrdy_r	general\\sirv_gnrl_bufs.v	/^wire nrdy_r;$/;"	n	module:sirv_gnrl_cdc_tx
 nrdy_set	general\\sirv_gnrl_bufs.v	/^wire nrdy_set = vld_set;$/;"	n	module:sirv_gnrl_cdc_tx
-nstate	data_router/buffer_if.sv	/^reg [2:0] state, nstate;$/;"	r	module:buffer_if
 nstate	data_router\\buffer_if.sv	/^reg [2:0] state, nstate;$/;"	r	module:buffer_if
-ntrans_cnt	data_router/buffer_if.sv	/^reg [3:0] ntrans_cnt; \/\/poy=3,stride=1,2$/;"	r	module:buffer_if
-ntrans_cnt	data_router\\buffer_if.sv	/^reg [1:0] ntrans_cnt; \/\/poy=3,stride=1,2$/;"	r	module:buffer_if
-ntrans_cnt_f	data_router/buffer_if.sv	/^wire ntrans_cnt_f = (ntrans_cnt == (KSIZE-STRIDE)); $/;"	n	module:buffer_if
-ntrans_cnt_f	data_router\\buffer_if.sv	/^wire ntrans_cnt_f = (ntrans_cnt == (POY - STRIDE)); $/;"	n	module:buffer_if
+ntrans_cnt	data_router\\buffer_if.sv	/^reg [3:0] ntrans_cnt; \/\/poy=3,stride=1,2$/;"	r	module:buffer_if
+ntrans_cnt_f	data_router\\buffer_if.sv	/^wire ntrans_cnt_f = (ntrans_cnt == (KSIZE-STRIDE)); $/;"	n	module:buffer_if
 o_axi_ar_chnl	general\\sirv_gnrl_icbs.v	/^wire [AR_CHNL_W -1:0] o_axi_ar_chnl;$/;"	n	module:sirv_gnrl_axi_buffer
 o_axi_araddr	general\\sirv_gnrl_icbs.v	/^  output [AW-1:0] o_axi_araddr,$/;"	p	module:sirv_gnrl_axi_buffer
 o_axi_araddr	general\\sirv_gnrl_icbs.v	/^  output [AW-1:0] o_axi_araddr,$/;"	p	module:sirv_gnrl_icb2axi
@@ -1330,7 +1394,10 @@ o_vld	general\\sirv_gnrl_bufs.v	/^  output          o_vld, $/;"	p	module:sirv_gn
 o_vld	general\\sirv_gnrl_bufs.v	/^  output          o_vld,$/;"	p	module:sirv_gnrl_bypbuf
 o_vld	general\\sirv_gnrl_bufs.v	/^  output o_vld, $/;"	p	module:sirv_gnrl_cdc_rx
 o_vld	general\\sirv_gnrl_bufs.v	/^  output o_vld, $/;"	p	module:sirv_gnrl_cdc_tx
+oclk	glb_ctrl/glb_ctrl.sv	/^reg oclk;$/;"	r	module:glb_ctrl
+oclk	glb_ctrl\\glb_ctrl.sv	/^reg oclk;$/;"	r	module:glb_ctrl
 odata	data_router\\mux.sv	/^	output reg [DW-1:0]	odata[BUFW]$/;"	p	module:mux
+odata	glb_ctrl/data_path.sv	/^wire [DW-1:0] odata[POY][BUFW];$/;"	n	module:data_path
 odata	glb_ctrl\\data_path.sv	/^wire [DW-1:0] odata[POY][BUFW];$/;"	n	module:data_path
 odata	input_buffer\\input_buffer.sv	/^	output[DW-1:0]	odata[POY][BUFW],$/;"	p	module:input_buffer
 odata	input_buffer\\input_buffer_tb.sv	/^logic [DW-1:0] rdata, odata[POY][BUFW];$/;"	r	module:input_buffer_tb
@@ -1354,6 +1421,8 @@ pixel_input	pe\\dwpe_tb.sv	/^int pixel_input[32];$/;"	r	module:dwpe_tb
 pixel_input	pe\\dwpe_tb.sv	/^task automatic data_generate(ref int pixel_input[32]);$/;"	p	task:dwpe_tb.data_generate
 pixel_input	pe\\svtb\\dwpe_test.sv	/^int pixel_input[32];$/;"	r	program:dwpe_test
 pixel_input	pe\\svtb\\dwpe_test.sv	/^task automatic data_generate(ref int pixel_input[32]);$/;"	p	task:dwpe_test.data_generate
+po_type	glb_ctrl/glb_ctrl.sv	/^wire po_type  = comp_cmd == PO ;$/;"	n	module:glb_ctrl
+po_type	glb_ctrl\\glb_ctrl.sv	/^wire po_type  = comp_cmd == PO ;$/;"	n	module:glb_ctrl
 priorty_arbt	general\\sirv_gnrl_icbs.v	/^    if(ARBT_SCHEME == 0) begin:priorty_arbt\/\/{$/;"	b	block:sirv_gnrl_icb_arbt.arbt_num_gt_1_gen
 priroty_grt_vec_gen	general\\sirv_gnrl_icbs.v	/^      begin:priroty_grt_vec_gen$/;"	b	block:sirv_gnrl_icb_arbt.arbt_num_gt_1_gen.priorty_arbt
 product	pe\\mac.sv	/^wire [2*DW-1:0] product = data * weight;$/;"	n	module:mac
@@ -1361,6 +1430,8 @@ ptr_1hot	general\\sirv_gnrl_icbs.v	/^    if(SPLT_PTR_1HOT == 1) begin:ptr_1hot\/
 ptr_1hot_rsp	general\\sirv_gnrl_icbs.v	/^    if(SPLT_PTR_1HOT == 1) begin:ptr_1hot_rsp\/\/ {$/;"	b	block:sirv_gnrl_icb_splt.splt_num_gt_1_gen
 ptr_not_1hot	general\\sirv_gnrl_icbs.v	/^    else begin:ptr_not_1hot\/\/}{$/;"	b	block:sirv_gnrl_icb_splt.splt_num_gt_1_gen
 ptr_not_1hot_rsp	general\\sirv_gnrl_icbs.v	/^    else begin:ptr_not_1hot_rsp\/\/}{$/;"	b	block:sirv_gnrl_icb_splt.splt_num_gt_1_gen
+pwc_type	glb_ctrl/glb_ctrl.sv	/^wire pwc_type = comp_cmd == PWC;$/;"	n	module:glb_ctrl
+pwc_type	glb_ctrl\\glb_ctrl.sv	/^wire pwc_type = comp_cmd == PWC;$/;"	n	module:glb_ctrl
 pwpixel_array	data_router\\data_router.sv	/^	output[DW-1:0]	pwpixel_array[POY]$/;"	p	module:data_router
 qout	general\\sirv_gnrl_dffs.v	/^  output     [DW-1:0] qout$/;"	p	module:sirv_gnrl_ltch
 qout	general\\sirv_gnrl_dffs.v	/^  output     [DW-1:0] qout,$/;"	p	module:sirv_gnrl_dffl
@@ -1387,10 +1458,12 @@ ram_we	general\\sirv_1cyc_sram_ctrl.v	/^  output          ram_we,  $/;"	p	module
 ram_we	general\\sirv_sram_icb_ctrl.v	/^  output          ram_we,  $/;"	p	module:sirv_sram_icb_ctrl
 ram_wem	general\\sirv_1cyc_sram_ctrl.v	/^  output [MW-1:0] ram_wem,$/;"	p	module:sirv_1cyc_sram_ctrl
 ram_wem	general\\sirv_sram_icb_ctrl.v	/^  output [MW-1:0] ram_wem,$/;"	p	module:sirv_sram_icb_ctrl
+rbank	glb_ctrl/data_path.sv	/^wire [7:0] rbank, rrow;$/;"	n	module:data_path
 rbank	glb_ctrl\\data_path.sv	/^wire [7:0] rbank, rrow;$/;"	n	module:data_path
 rbank	input_buffer\\data_router_if_sim.sv	/^	input [7:0]				rbank,$/;"	p	module:data_router_if_sim
 rbank	input_buffer\\input_buffer.sv	/^	input [7:0]  		rbank,$/;"	p	module:input_buffer
 rbank	input_buffer\\input_buffer_tb.sv	/^logic [7:0] rbank, rrow;$/;"	r	module:input_buffer_tb
+rcol	glb_ctrl/data_path.sv	/^wire [27:0] rcol;$/;"	n	module:data_path
 rcol	glb_ctrl\\data_path.sv	/^wire [27:0] rcol;$/;"	n	module:data_path
 rcol	input_buffer\\data_router_if_sim.sv	/^	input [27:0]			rcol,$/;"	p	module:data_router_if_sim
 rcol	input_buffer\\input_buffer.sv	/^	input [27:0]		rcol$/;"	p	module:input_buffer
@@ -1407,17 +1480,19 @@ rdata	input_buffer\\sender_tb.sv	/^logic [DW-1:0] rdata, wdata;$/;"	r	module:sen
 rdata	weight_buffer\\axi_bus_sim.sv	/^	output[DW-1:0]	rdata,$/;"	p	module:axi_bus_sim
 rdata	weight_buffer\\weight_buffer.sv	/^	input [DW-1:0] 	rdata,$/;"	p	module:weight_buffer
 rdata	weight_buffer\\weight_buffer_tb.sv	/^logic [DW-1:0] rdata, dw_out;$/;"	r	module:weight_buffer_tb
+rdata_0	accelerator.sv	/^	input [DW-1:0] 	rdata_0,$/;"	p	module:accelerator
+rdata_0	glb_ctrl/data_path.sv	/^	input [DW-1:0] 	rdata_0,$/;"	p	module:data_path
 rdata_0	glb_ctrl\\data_path.sv	/^	input [DW-1:0] 	rdata_0,$/;"	p	module:data_path
+rdata_1	accelerator.sv	/^	input [DW-1:0] 	rdata_1,$/;"	p	module:accelerator
+rdata_1	glb_ctrl/data_path.sv	/^	input [DW-1:0] 	rdata_1,$/;"	p	module:data_path
 rdata_1	glb_ctrl\\data_path.sv	/^	input [DW-1:0] 	rdata_1,$/;"	p	module:data_path
 rdata_r	input_buffer\\axi_bus_sim.sv	/^reg [DW-1:0] rdata_r;$/;"	r	module:axi_bus_sim
 rdata_r	weight_buffer\\axi_bus_sim.sv	/^reg [DW-1:0] rdata_r;$/;"	r	module:axi_bus_sim
 reg_array	data_router\\reg_array.sv	/^module reg_array#($/;"	m
-reg_array_cmd	data_router/buffer_if.sv	/^	output[1:0]			reg_array_cmd[POY],$/;"	p	module:buffer_if
 reg_array_cmd	data_router\\buffer_if.sv	/^	output[1:0]			reg_array_cmd[POY],$/;"	p	module:buffer_if
 reg_array_cmd	data_router\\data_router.sv	/^wire [1:0] reg_array_cmd[POY];$/;"	n	module:data_router
 reg_array_cmd	data_router\\reg_array.sv	/^	input [1:0] 		reg_array_cmd$/;"	p	module:reg_array
 reg_array_cmd	input_buffer\\input_buffer_tb.sv	/^logic [1:0] rpsel, reg_array_cmd[POY];$/;"	r	module:input_buffer_tb
-reg_array_cmd_r	data_router/buffer_if.sv	/^reg [1:0] reg_array_cmd_r[POY];$/;"	r	module:buffer_if
 reg_array_cmd_r	data_router\\buffer_if.sv	/^reg [1:0] reg_array_cmd_r[POY];$/;"	r	module:buffer_if
 reg_array_dat	data_router\\data_router.sv	/^wire [DW-1:0] reg_array_dat[POY][BUFW];$/;"	n	module:data_router
 reg_array_o_fifo_dat	data_router\\data_router.sv	/^wire [DW-1:0] reg_array_o_fifo_dat[POY-1][BUFW];$/;"	n	module:data_router
@@ -1425,6 +1500,9 @@ reg_arrays	data_router\\data_router.sv	/^for(i = 0;i < POY;i++) begin:reg_arrays
 relu	pe\\relu.sv	/^module relu#($/;"	m
 ren	general\\sirv_gnrl_bufs.v	/^    wire ren = o_vld & o_rdy;$/;"	n	block:sirv_gnrl_fifo.dp_gt0
 ren	general\\sirv_sim_ram.v	/^    wire ren;$/;"	n	module:sirv_sim_ram
+reset_up	accelerator_test.sv	/^event reset_up;$/;"	e	program:accelerator_test
+result	accelerator.sv	/^	output[DW-1:0]	result[POY][POX],$/;"	p	module:accelerator
+result	glb_ctrl/data_path.sv	/^	output[DW-1:0]	result[POY][POX],$/;"	p	module:data_path
 result	glb_ctrl\\data_path.sv	/^	output[DW-1:0]	result[POY][POX],$/;"	p	module:data_path
 result	glb_ctrl\\nosyn\\data_path_tb.sv	/^logic [DW-1:0] result[POY][POX];$/;"	r	module:data_path_tb
 result	pe\\dwpe.sv	/^	output[DW-1:0]	result[POX-1:0],$/;"	p	module:dwpe
@@ -1436,6 +1514,9 @@ result	pe\\relu.sv	/^	output[DW-1:0] result[POX]$/;"	p	module:relu
 result	pe\\svtb\\dwpe_if.sv	/^	input [DW-1:0]	result[POX];$/;"	p
 result	pe\\svtb\\dwpe_if.sv	/^	output	result,$/;"	p
 result	pe\\svtb\\dwpe_if.sv	/^logic [DW-1:0] pixel_array[POX], result[POX], weight;$/;"	r
+result_valid	accelerator.sv	/^	output 					result_valid[POY][POX]$/;"	p	module:accelerator
+result_valid	glb_ctrl/data_path.sv	/^	output 					result_valid[POY][POX]$/;"	p	module:data_path
+result_valid	glb_ctrl/glb_ctrl.sv	/^	input 					result_valid,$/;"	p	module:glb_ctrl
 result_valid	glb_ctrl\\data_path.sv	/^	output 					result_valid[POY][POX]$/;"	p	module:data_path
 result_valid	glb_ctrl\\glb_ctrl.sv	/^	input 					result_valid,$/;"	p	module:glb_ctrl
 result_valid	glb_ctrl\\nosyn\\data_path_tb.sv	/^logic data_load, dw_comp, data_init_addr_en,  blkend, mapend, result_valid[POY][POX];$/;"	r	module:data_path_tb
@@ -1462,10 +1543,12 @@ rlast	input_buffer\\input_buffer_tb.sv	/^logic clk, rst_n, arvalid, arready, rla
 rlast	weight_buffer\\axi_bus_sim.sv	/^	output 					rlast,$/;"	p	module:axi_bus_sim
 rlast	weight_buffer\\weight_buffer.sv	/^	input 					rlast,$/;"	p	module:weight_buffer
 rlast	weight_buffer\\weight_buffer_tb.sv	/^	dw_ready, dw_comp, rlast;$/;"	r	module:weight_buffer_tb
+rlast_0	accelerator.sv	/^	input 					rlast_0,$/;"	p	module:accelerator
+rlast_0	glb_ctrl/data_path.sv	/^	input 					rlast_0,$/;"	p	module:data_path
 rlast_0	glb_ctrl\\data_path.sv	/^	input 					rlast_0,$/;"	p	module:data_path
+rlast_1	accelerator.sv	/^	input 					rlast_1,$/;"	p	module:accelerator
+rlast_1	glb_ctrl/data_path.sv	/^	input 					rlast_1,$/;"	p	module:data_path
 rlast_1	glb_ctrl\\data_path.sv	/^	input 					rlast_1,$/;"	p	module:data_path
-row	data_router/buffer_if.sv	/^	output[7:0]			row,$/;"	p	module:buffer_if
-row	data_router/data_router_tb.sv	/^logic [7:0] bank, row;$/;"	r	module:data_router_tb
 row	data_router\\buffer_if.sv	/^	output[7:0]			row,$/;"	p	module:buffer_if
 row	data_router\\data_router.sv	/^	output[7:0]			row,$/;"	p	module:data_router
 row	data_router\\data_router_if_sim.sv	/^	input [7:0]				row,$/;"	p	module:data_router_if_sim
@@ -1476,21 +1559,18 @@ row_bias_cnt_c	input_buffer\\sender.sv	/^wire row_bias_cnt_c = (row_bias_cnt_r =
 row_bias_cnt_c_1	input_buffer\\sender.sv	/^reg row_bias_cnt_c_1;$/;"	r	module:sender
 row_bias_cnt_ff	input_buffer\\sender.sv	/^wire row_bias_cnt_ff = ~row_bias_cnt_c & row_bias_cnt_c_1;$/;"	n	module:sender
 row_bias_cnt_r	input_buffer\\sender.sv	/^reg [7:0] row_bias_cnt_r;$/;"	r	module:sender
-row_r	data_router/buffer_if.sv	/^reg [7:0] row_r;$/;"	r	module:buffer_if
 row_r	data_router\\buffer_if.sv	/^reg [7:0] row_r;$/;"	r	module:buffer_if
 rp	data_router\\data_router_if_sim.sv	/^task rp;$/;"	t	module:data_router_if_sim
 rp	input_buffer\\data_router_if_sim.sv	/^task rp;$/;"	t	module:data_router_if_sim
-rpsel	data_router/buffer_if.sv	/^	output[1:0]			rpsel,$/;"	p	module:buffer_if
-rpsel	data_router/data_router_tb.sv	/^logic [1:0] rpsel;$/;"	r	module:data_router_tb
 rpsel	data_router\\buffer_if.sv	/^	output[1:0]			rpsel,$/;"	p	module:buffer_if
 rpsel	data_router\\data_router.sv	/^	output[1:0]			rpsel,$/;"	p	module:data_router
 rpsel	data_router\\data_router_if_sim.sv	/^	input [1:0]				rpsel$/;"	p	module:data_router_if_sim
 rpsel	data_router\\data_router_tb.sv	/^logic [1:0] rpsel;$/;"	r	module:data_router_tb
+rpsel	glb_ctrl/data_path.sv	/^wire [1:0] rpsel;$/;"	n	module:data_path
 rpsel	glb_ctrl\\data_path.sv	/^wire [1:0] rpsel;$/;"	n	module:data_path
 rpsel	input_buffer\\data_router_if_sim.sv	/^	input [1:0]				rpsel,$/;"	p	module:data_router_if_sim
 rpsel	input_buffer\\input_buffer.sv	/^	input [1:0] 		rpsel,$/;"	p	module:input_buffer
 rpsel	input_buffer\\input_buffer_tb.sv	/^logic [1:0] rpsel, reg_array_cmd[POY];$/;"	r	module:input_buffer_tb
-rpsel_r	data_router/buffer_if.sv	/^reg [1:0] rpsel_r;$/;"	r	module:buffer_if
 rpsel_r	data_router\\buffer_if.sv	/^reg [1:0] rpsel_r;$/;"	r	module:buffer_if
 rptr_dp_1	general\\sirv_gnrl_bufs.v	/^    if(DP == 1) begin:rptr_dp_1$/;"	b	block:sirv_gnrl_fifo.dp_gt0
 rptr_dp_not_1	general\\sirv_gnrl_bufs.v	/^    else begin:rptr_dp_not_1$/;"	b	block:sirv_gnrl_fifo.dp_gt0
@@ -1502,6 +1582,7 @@ rptr_vec_r	general\\sirv_gnrl_bufs.v	/^    wire [DP-1:0] rptr_vec_r;$/;"	n	block
 rr	data_router\\data_router_if_sim.sv	/^task rr;$/;"	t	module:data_router_if_sim
 rr	input_buffer\\data_router_if_sim.sv	/^task rr;$/;"	t	module:data_router_if_sim
 rrobin_arbt	general\\sirv_gnrl_icbs.v	/^    if(ARBT_SCHEME == 1) begin:rrobin_arbt\/\/{$/;"	b	block:sirv_gnrl_icb_arbt.arbt_num_gt_1_gen
+rrow	glb_ctrl/data_path.sv	/^wire [7:0] rbank, rrow;$/;"	n	module:data_path
 rrow	glb_ctrl\\data_path.sv	/^wire [7:0] rbank, rrow;$/;"	n	module:data_path
 rrow	input_buffer\\data_router_if_sim.sv	/^	input [7:0]				rrow,$/;"	p	module:data_router_if_sim
 rrow	input_buffer\\input_buffer.sv	/^	input [7:0] 		rrow,$/;"	p	module:input_buffer
@@ -1531,8 +1612,8 @@ rspid_fifo_wdat	general\\sirv_gnrl_icbs.v	/^wire [ARBT_PTR_W-1:0] rspid_fifo_wda
 rspid_fifo_wdat	general\\sirv_gnrl_icbs.v	/^wire [SPLT_PTR_W-1:0] rspid_fifo_wdat;$/;"	n	module:sirv_gnrl_icb_splt
 rspid_fifo_wen	general\\sirv_gnrl_icbs.v	/^wire rspid_fifo_wen;$/;"	n	module:sirv_gnrl_icb_arbt
 rspid_fifo_wen	general\\sirv_gnrl_icbs.v	/^wire rspid_fifo_wen;$/;"	n	module:sirv_gnrl_icb_splt
-rst_n	data_router/buffer_if.sv	/^	input 					rst_n,$/;"	p	module:buffer_if
-rst_n	data_router/data_router_tb.sv	/^logic clk, rst_n, blkend, dwpe_ena;$/;"	r	module:data_router_tb
+rst_n	accelerator.sv	/^	input 					rst_n,$/;"	p	module:accelerator
+rst_n	accelerator_test.sv	/^	input logic							rst_n,$/;"	p	program:accelerator_test
 rst_n	data_router\\buffer_if.sv	/^	input 					rst_n,$/;"	p	module:buffer_if
 rst_n	data_router\\data_router.sv	/^	input 					rst_n,$/;"	p	module:data_router
 rst_n	data_router\\data_router_if_sim.sv	/^	input 						rst_n,$/;"	p	module:data_router_if_sim
@@ -1559,6 +1640,8 @@ rst_n	general\\sirv_gnrl_icbs.v	/^  input  rst_n$/;"	p	module:sirv_gnrl_icb_n2w
 rst_n	general\\sirv_gnrl_icbs.v	/^  input  rst_n$/;"	p	module:sirv_gnrl_icb_splt
 rst_n	general\\sirv_gnrl_ram.v	/^  input            rst_n,$/;"	p	module:sirv_gnrl_ram
 rst_n	general\\sirv_sram_icb_ctrl.v	/^  input  rst_n$/;"	p	module:sirv_sram_icb_ctrl
+rst_n	glb_ctrl/data_path.sv	/^	input 					rst_n,$/;"	p	module:data_path
+rst_n	glb_ctrl/glb_ctrl.sv	/^	input 					rst_n,$/;"	p	module:glb_ctrl
 rst_n	glb_ctrl\\data_path.sv	/^	input 					rst_n,$/;"	p	module:data_path
 rst_n	glb_ctrl\\glb_ctrl.sv	/^	input 					rst_n,$/;"	p	module:glb_ctrl
 rst_n	glb_ctrl\\nosyn\\data_path_tb.sv	/^logic rst_n;$/;"	r	module:data_path_tb
@@ -1595,7 +1678,11 @@ rvalid	input_buffer\\sender_tb.sv	/^logic clk, rst_n, data_load, rvalid;$/;"	r	m
 rvalid	weight_buffer\\axi_bus_sim.sv	/^	output 					rvalid$/;"	p	module:axi_bus_sim
 rvalid	weight_buffer\\weight_buffer.sv	/^	input 					rvalid,$/;"	p	module:weight_buffer
 rvalid	weight_buffer\\weight_buffer_tb.sv	/^logic clk, rst_n, weight_load, init_addr_en, arvalid, arready, rvalid,$/;"	r	module:weight_buffer_tb
+rvalid_0	accelerator.sv	/^	input 					rvalid_0,$/;"	p	module:accelerator
+rvalid_0	glb_ctrl/data_path.sv	/^	input 					rvalid_0,$/;"	p	module:data_path
 rvalid_0	glb_ctrl\\data_path.sv	/^	input 					rvalid_0,$/;"	p	module:data_path
+rvalid_1	accelerator.sv	/^	input 					rvalid_1,$/;"	p	module:accelerator
+rvalid_1	glb_ctrl/data_path.sv	/^	input 					rvalid_1,$/;"	p	module:data_path
 rvalid_1	glb_ctrl\\data_path.sv	/^	input 					rvalid_1,$/;"	p	module:data_path
 rvalid_r	input_buffer\\axi_bus_sim.sv	/^reg rvalid_r;$/;"	r	module:axi_bus_sim
 rvalid_r	weight_buffer\\axi_bus_sim.sv	/^reg rvalid_r;$/;"	r	module:axi_bus_sim
@@ -1629,14 +1716,12 @@ sel_o_icb_cmd_wdata	general\\sirv_gnrl_icbs.v	/^reg [DW-1:0]   sel_o_icb_cmd_wda
 sel_o_icb_cmd_wmask	general\\sirv_gnrl_icbs.v	/^reg [DW\/8-1:0] sel_o_icb_cmd_wmask;$/;"	r	module:sirv_gnrl_icb_arbt
 sender	input_buffer\\sender.sv	/^module sender#($/;"	m
 sender_tb	input_buffer\\sender_tb.sv	/^module sender_tb;$/;"	m
-shift	data_router/buffer_if.sv	/^task shift;$/;"	t	module:buffer_if
 shift	data_router\\buffer_if.sv	/^task shift;$/;"	t	module:buffer_if
-shift_cnt	data_router/buffer_if.sv	/^reg [3:0] shift_cnt; \/\/shift maxium smaller than 9$/;"	r	module:buffer_if
 shift_cnt	data_router\\buffer_if.sv	/^reg [3:0] shift_cnt; \/\/shift maxium smaller than 9$/;"	r	module:buffer_if
-shift_cnt_f	data_router/buffer_if.sv	/^wire shift_cnt_f = (shift_cnt == (KSIZE - 2));$/;"	n	module:buffer_if
 shift_cnt_f	data_router\\buffer_if.sv	/^wire shift_cnt_f = (shift_cnt == (KSIZE - 2));$/;"	n	module:buffer_if
-shift_state_detect	data_router/buffer_if.sv	/^wire shift_state_detect = (state == SHIFT);$/;"	n	module:buffer_if
 shift_state_detect	data_router\\buffer_if.sv	/^wire shift_state_detect = (state == SHIFT);$/;"	n	module:buffer_if
+shit	shit.v	/^	output shit$/;"	p	module:shit
+shit	shit.v	/^module shit #($/;"	m
 sirv_1cyc_sram_ctrl	general\\sirv_1cyc_sram_ctrl.v	/^module sirv_1cyc_sram_ctrl #($/;"	m
 sirv_gnrl_axi_buffer	general\\sirv_gnrl_icbs.v	/^module sirv_gnrl_axi_buffer$/;"	m
 sirv_gnrl_bypbuf	general\\sirv_gnrl_bufs.v	/^module sirv_gnrl_bypbuf # ($/;"	m
@@ -1667,16 +1752,12 @@ splt_num_gt_1_gen	general\\sirv_gnrl_icbs.v	/^  else begin:splt_num_gt_1_gen\/\/
 sram_active	general\\sirv_sram_icb_ctrl.v	/^  wire sram_active;$/;"	n	module:sirv_sram_icb_ctrl
 sram_ctrl_active	general\\sirv_1cyc_sram_ctrl.v	/^  output sram_ctrl_active,$/;"	p	module:sirv_1cyc_sram_ctrl
 sram_ctrl_active	general\\sirv_sram_icb_ctrl.v	/^  output sram_ctrl_active,$/;"	p	module:sirv_sram_icb_ctrl
-ssd_r_1	data_router/buffer_if.sv	/^reg ssd_r_1, ssd_r_2;$/;"	r	module:buffer_if
 ssd_r_1	data_router\\buffer_if.sv	/^reg ssd_r_1, ssd_r_2;$/;"	r	module:buffer_if
-ssd_r_2	data_router/buffer_if.sv	/^reg ssd_r_1, ssd_r_2;$/;"	r	module:buffer_if
 ssd_r_2	data_router\\buffer_if.sv	/^reg ssd_r_1, ssd_r_2;$/;"	r	module:buffer_if
-state	data_router/buffer_if.sv	/^reg [2:0] state, nstate;$/;"	r	module:buffer_if
 state	data_router\\buffer_if.sv	/^reg [2:0] state, nstate;$/;"	r	module:buffer_if
 syn_fifo	data_router\\syn_fifo.sv	/^module syn_fifo#($/;"	m
 sync_dat	general\\sirv_gnrl_bufs.v	/^  wire [DW-1:0] sync_dat [DP-1:0];$/;"	n	module:sirv_gnrl_sync
 sync_gen	general\\sirv_gnrl_bufs.v	/^    for(i=0;i<DP;i=i+1) begin:sync_gen$/;"	b	module:sirv_gnrl_sync
-sys_ena	glb_ctrl\\glb_ctrl.sv	/^	input 					sys_ena,$/;"	p	module:glb_ctrl
 tcm_cgstop	general\\sirv_1cyc_sram_ctrl.v	/^  input  tcm_cgstop,$/;"	p	module:sirv_1cyc_sram_ctrl
 tcm_cgstop	general\\sirv_sram_icb_ctrl.v	/^  input  tcm_cgstop,$/;"	p	module:sirv_sram_icb_ctrl
 test	pe\\svtb\\dwpe_if.sv	/^modport test($/;"	M
@@ -1751,11 +1832,18 @@ weight	pe\\svtb\\dwpe_if.sv	/^	output [DW-1:0] weight;$/;"	p
 weight	pe\\svtb\\dwpe_if.sv	/^logic [DW-1:0] pixel_array[POX], result[POX], weight;$/;"	r
 weight_buffer	weight_buffer\\weight_buffer.sv	/^module weight_buffer#($/;"	m
 weight_buffer_tb	weight_buffer\\weight_buffer_tb.sv	/^module weight_buffer_tb;$/;"	m
+weight_init_addr	accelerator.sv	/^wire [AW-1:0] data_init_addr, weight_init_addr;$/;"	n	module:accelerator
+weight_init_addr	glb_ctrl/data_path.sv	/^	input [AW-1:0]	weight_init_addr,$/;"	p	module:data_path
 weight_init_addr	glb_ctrl\\data_path.sv	/^	input [AW-1:0]	weight_init_addr,$/;"	p	module:data_path
 weight_init_addr	glb_ctrl\\nosyn\\data_path_tb.sv	/^logic [AW-1:0] data_init_addr, weight_init_addr;$/;"	r	module:data_path_tb
 weight_init_addr	glb_ctrl\\nosyn\\data_path_test.sv	/^	output logic [AW-1:0] weight_init_addr,$/;"	p	program:data_path_test
+weight_init_addr_in	accelerator.sv	/^	input [AW-1:0]	weight_init_addr_in,$/;"	p	module:accelerator
+weight_init_addr_in	accelerator_test.sv	/^	output logic [AW-1:0]			weight_init_addr_in,$/;"	p	program:accelerator_test
+weight_init_addr_in	glb_ctrl/glb_ctrl.sv	/^	input [AW-1:0]	weight_init_addr_in,$/;"	p	module:glb_ctrl
 weight_init_addr_in	glb_ctrl\\glb_ctrl.sv	/^	input [AW-1:0]	weight_init_addr_in,$/;"	p	module:glb_ctrl
+weight_init_addr_out	glb_ctrl/glb_ctrl.sv	/^	output[AW-1:0]	weight_init_addr_out,$/;"	p	module:glb_ctrl
 weight_init_addr_out	glb_ctrl\\glb_ctrl.sv	/^	output[AW-1:0]	weight_init_addr_out,$/;"	p	module:glb_ctrl
+weight_load	glb_ctrl/data_path.sv	/^wire dwpe_ena, weight_load;$/;"	n	module:data_path
 weight_load	glb_ctrl\\data_path.sv	/^wire dwpe_ena, weight_load;$/;"	n	module:data_path
 weight_load	input_buffer\\addr_gen.sv	/^	output 					weight_load,$/;"	p	module:addr_gen
 weight_load	input_buffer\\input_buffer.sv	/^	output 					weight_load,$/;"	p	module:input_buffer

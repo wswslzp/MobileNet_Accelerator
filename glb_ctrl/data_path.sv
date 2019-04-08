@@ -8,8 +8,8 @@ module data_path#(
 	STRIDE=2,
 	IW = 224,
 	IH = 224,
-	BURST = 32,
-	BUFW = BURST
+	BURST = 32
+	//BUFW = BURST
 )(
 	input 					clk,
 	input 					rst_n,
@@ -35,7 +35,7 @@ module data_path#(
 	//from glb_ctrl
 	input 					data_load,
 	//input 					weight_load,
-	input [1:0]			dw_comp,//unused
+	input 			dw_comp,//unused
 	input [AW-1:0]	data_init_addr,
 	input [AW-1:0]	weight_init_addr,
 	input 					data_init_addr_en,
@@ -47,6 +47,8 @@ module data_path#(
 	output[DW-1:0]	result[POY][POX],
 	output 					result_valid[POY][POX]
 );
+
+localparam BUFW = BURST;
 
 wire [DW-1:0] odata[POY][BUFW];
 wire [1:0] rpsel;
@@ -88,7 +90,7 @@ weight_buffer#(
 	.BURST(BURST)
 )u_weight_buffer(
 	.*,
-	.dw_ready(1'b1),
+	.dw_ready(1'b1), //TODO
 	.rdata(rdata_1),
 	.rvalid(rvalid_1),
 	.rlast(rlast_1),
@@ -97,7 +99,7 @@ weight_buffer#(
 	.arvalid(arvalid_1),
 	.arburst(arburst_1),
 	.init_addr(weight_init_addr),
-	.init_addr_en(weight_load)
+	.init_addr_en(weight_load) // Weight load substitus weight init addr en????
 );
 
 data_router#(

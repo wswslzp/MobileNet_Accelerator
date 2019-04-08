@@ -35,10 +35,11 @@ module addr_gen#(
 localparam LM = ((STRIDE+1)*POY-STRIDE);
 // RAL must be aligned to BURST, which means that
 // POX shall be carefully selected so that RAL is 
-// equal to or less than BURST.
+// equal to or less than BURST. NOTE: less got problem!!!
 // let bufw equal to burst to avoid bug in sender
+// RAL not align to the BURST and then not align BUFW/IW!!!!
 localparam BUFW = BURST;
-localparam RAL = ((POX-1)*STRIDE+KSIZE);
+localparam RAL = ((POX-1)*STRIDE+KSIZE)+1;
 localparam BUFH = STRIDE+1;
 localparam BLK_IN_ROW = IW / BUFW;
 localparam BLK_ROW_IN_MAP = IH / LM;
