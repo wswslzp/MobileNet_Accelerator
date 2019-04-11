@@ -1,3 +1,13 @@
+//=============================================================================
+//     FileName: accelerator.sv
+//         Desc: Top module file
+//       Author: Liao Zhengpeng
+//        Email: wswslzp@outlook.com
+//     HomePage:  
+//      Version: 0.0.1
+//   LastChange: 2019-04-11 19:27:52
+//      History:
+//=============================================================================
 module accelerator#(
 	parameter 
 	DW = 32,
@@ -42,45 +52,45 @@ module accelerator#(
 	output 					result_valid[POY][POX]
 );
 
-localparam BUFW = BURST;
-localparam BUFH = 2*STRIDE;
+	localparam BUFW = BURST;
+	localparam BUFH = 2*STRIDE;
 
-wire [AW-1:0] data_init_addr, weight_init_addr;
-wire data_load, dw_comp, data_init_addr_en;
-wire blkend, mapend;
-//wire result_valid[POY][POX];
-wire g_result_valid = result_valid[0][0];
+	wire [AW-1:0] data_init_addr, weight_init_addr;
+	wire data_load, dw_comp, data_init_addr_en;
+	wire blkend, mapend;
+	//wire result_valid[POY][POX];
+	wire g_result_valid = result_valid[0][0];
 
-glb_ctrl #(
-	.AW(AW),
-	.KSIZE(KSIZE),
-	.IW(IW),
-	.IH(IH),
-	.BUFH(BUFH),
-	.BUFW(BUFW)
-)u_glb_ctrl(
-	.*,
-	//.data_init_addr_in(data_init_addr),
-	//.weight_init_addr_in(weight_init_addr),
-	.data_init_addr_out(data_init_addr),
-	.weight_init_addr_out(weight_init_addr),
-	.result_valid(g_result_valid)
-);
+	glb_ctrl #(
+		.AW(AW),
+		.KSIZE(KSIZE),
+		.IW(IW),
+		.IH(IH),
+		.BUFH(BUFH),
+		.BUFW(BUFW)
+	)u_glb_ctrl(
+		.*,
+		//.data_init_addr_in(data_init_addr),
+		//.weight_init_addr_in(weight_init_addr),
+		.data_init_addr_out(data_init_addr),
+		.weight_init_addr_out(weight_init_addr),
+		.result_valid(g_result_valid)
+	);
 
-data_path #(
-	.AW(AW),
-	.DW(DW),
-	.KSIZE(KSIZE),
-	.POX(POX),
-	.POY(POY),
-	.STRIDE(STRIDE),
-	.IW(IW),
-	.IH(IH),
-	.BURST(BURST)
-	//.BUFW(BUFW)
-)u_data_path(
-	.*,
-	.result_valid
-);
+	data_path #(
+		.AW(AW),
+		.DW(DW),
+		.KSIZE(KSIZE),
+		.POX(POX),
+		.POY(POY),
+		.STRIDE(STRIDE),
+		.IW(IW),
+		.IH(IH),
+		.BURST(BURST)
+		//.BUFW(BUFW)
+	)u_data_path(
+		.*,
+		.result_valid
+	);
 
 endmodule

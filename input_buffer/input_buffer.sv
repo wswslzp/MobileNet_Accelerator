@@ -1,3 +1,13 @@
+//=============================================================================
+//     FileName: input_buffer.sv
+//         Desc: 
+//       Author: Liao Zhengpeng
+//        Email: wswslzp@outlook.com
+//     HomePage:  
+//      Version: 0.0.1
+//   LastChange: 2019-04-11 19:35:24
+//      History:
+//=============================================================================
 module input_buffer#(
 	parameter 
 	DW = 32,

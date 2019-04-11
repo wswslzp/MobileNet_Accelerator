@@ -1,3 +1,13 @@
+//=============================================================================
+//     FileName: addr_gen.sv
+//         Desc: 
+//       Author: Liao Zhengpeng
+//        Email: wswslzp@outlook.com
+//     HomePage:  
+//      Version: 0.0.1
+//   LastChange: 2019-04-11 19:35:03
+//      History:
+//=============================================================================
 module addr_gen#(
 	parameter 
 	AW = 32,

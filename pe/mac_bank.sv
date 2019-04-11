@@ -1,3 +1,13 @@
+//=============================================================================
+//     FileName: mac_bank.sv
+//         Desc: 
+//       Author: Liao Zhengpeng
+//        Email: wswslzp@outlook.com
+//     HomePage:  
+//      Version: 0.0.1
+//   LastChange: 2019-04-11 19:36:40
+//      History:
+//=============================================================================
 module mac_bank#(
 	parameter DW = 32,
 	parameter POX= 3,

@@ -1,3 +1,13 @@
+//=============================================================================
+//     FileName: accelerator_test.sv
+//         Desc: Accelerator Test Program
+//       Author: Liao Zhengpeng
+//        Email: wswslzp@outlook.com
+//     HomePage:  
+//      Version: 0.0.1
+//   LastChange: 2019-04-11 19:25:47
+//      History:
+//=============================================================================
 program accelerator_test #(
 	parameter
 	AW = 32,

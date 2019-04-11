@@ -1,3 +1,13 @@
+//=============================================================================
+//     FileName: syn_fifo.sv
+//         Desc: 
+//       Author: Liao Zhengpeng
+//        Email: wswslzp@outlook.com
+//     HomePage:  
+//      Version: 0.0.1
+//   LastChange: 2019-04-11 19:34:03
+//      History:
+//=============================================================================
 module syn_fifo#(
 	parameter DW = 32,
 	parameter STRIDE = 2,

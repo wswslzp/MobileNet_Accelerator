@@ -1,3 +1,13 @@
+//=============================================================================
+//     FileName: dwpe_array.sv
+//         Desc: 
+//       Author: Liao Zhengpeng
+//        Email: wswslzp@outlook.com
+//     HomePage:  
+//      Version: 0.0.1
+//   LastChange: 2019-04-11 19:36:26
+//      History:
+//=============================================================================
 module dwpe_array#(
 	parameter DW = 32,
 	parameter POX= 16,

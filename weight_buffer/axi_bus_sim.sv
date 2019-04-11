@@ -1,3 +1,13 @@
+//=============================================================================
+//     FileName: axi_bus_sim.sv
+//         Desc: 
+//       Author: Liao Zhengpeng
+//        Email: wswslzp@outlook.com
+//     HomePage:  
+//      Version: 0.0.1
+//   LastChange: 2019-04-11 19:37:17
+//      History:
+//=============================================================================
 module axi_bus_sim#(
 	parameter DW = 32,
 	parameter AW = 32
